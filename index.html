@@ -203,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -213,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -289,7 +289,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T20:40:17+08:00">
                 2017-12-10
@@ -387,163 +387,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2017/12/03/day01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="PerryPPP">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Perry's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/03/day01/" itemprop="url">Non titré</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posté le</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T19:59:15+08:00">
-                2017-12-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h2 id="数据分析学习笔记day01"><a href="#数据分析学习笔记day01" class="headerlink" title="数据分析学习笔记day01"></a>数据分析学习笔记day01</h2><p> 最近正在尝试系统地学习数据分析的相关知识&gt;.&lt; 本着督促自己以及方便别的同学入门数据分析的目的，定期在此处更新我的学习笔记~</p>
-<h2 id="Linux文件系统介绍以及局域网配置"><a href="#Linux文件系统介绍以及局域网配置" class="headerlink" title="Linux文件系统介绍以及局域网配置"></a>Linux文件系统介绍以及局域网配置</h2><p>####Linux的文件系统概述</p>
-<ul>
-<li>Linux文件系统使用树型目录结构，在整个文件系统如同一棵倒长的树</li>
-<li>Linux系统中总是将文件系统挂载到树型目录结构中的某个目录节点中使用</li>
-<li>对于Linux系统而言，“万物都是文件，万物皆可挂载”</li>
-<li>根是所有目录的起始点 /</li>
-</ul>
-<p>####根目录下主要的子目录<br>在此列举，详细资料请参看书本0.0</p>
-<ul>
-<li>/bin:包含二进制文件，即可执行程序，这些程序是系统必需的文件，一般的命令都存储在这里</li>
-<li>/sbin:也用于存储二进制文件，只有超级用户root才可以使用</li>
-<li>/etc:存放配置文件，如passwd,inittab等 在Linux系统中，所有的配置文件都是文本文件，需要更改配置时直接修改文件内容即可</li>
-<li>/boot:系统引导时使用的文件，系统中非常重要的内核vmlinux就放在该目录下</li>
-<li>/dev:存放设备文件，用户可以通过这些文件访问外部设备</li>
-<li>/home:保存除管理员用户外，其他用户的主目录</li>
-<li>/lib:存放程序运行时所需要的库文件，动态链接库，公有库都存放在该目录下 ps.yum会自动查询下载依赖</li>
-<li>/temp:存放各种临时文件</li>
-<li>/mnt:挂载软盘，光盘，u盘文件的挂载点</li>
-<li>/root：超级用户的个人主目录</li>
-<li>/usr:该目录的空间比较大，用于安装各种应用程序</li>
-<li>/proc：是一个虚拟目录，存放当前内存的映像，由内核自动产生</li>
-<li>/var:存放一些会随时改变的文件</li>
-</ul>
-<p>####局域网工作机制和网络地址配置<br>用下图的简单示例网络来介绍局域网的配置过程</p>
-<p>COMPUTER1（网卡）      COMPUTER2（网卡）         COMPUTER3<br>|                           |                        |<br>|                           |                        |<br>|————————&gt;路由器&lt;———————|</p>
-<p>首先，对局域网中工作的Computer而言，需要我们配置的信息有：</p>
-<ul>
-<li>IP：对于每台机器来说是唯一的。是由网关决定的（交换机、路由器）前三个字段与局域网的网关一致，最后一个字段不能重复。需要注意的是xxx.xxx.xxx.255是广播地址，个人设备不能使用。ex.若某路由器的ip为192.168.10.0，那么在此局域网中机器可用的ip地址的最后一个字段的范围就是1~254。<br>NETMASK：子网掩码，用来查看网段的 255.255.255.0-&gt;二进制：11111111.11111111.11111111.00000000<br>用个人的ip与子网掩码在二进制形式下进行与操作，可依次取得前三个段 xxx.xxx.xxx.0<br>机器在局域网互连需要网段一致。<br>GATEWAY：网关ip，网络的总出口<br>DNS：域名解析服务器（域名和ip地址的映射）<br>HWADDR（数据链路层）<br>局域网内主机名配置（内部识别）：配置hosts文件 /etc/hosts文件中加上对应的ip和你自定义的主机名（每一台都要配置），就可以ping通了<br>Ps.在局域网中只能手动对每台电脑进行配置</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2017/11/27/first-test-page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -573,7 +416,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-27T19:54:11+08:00">
                 2017-11-27
@@ -693,7 +536,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-27T19:39:44+08:00">
                 2017-11-27
@@ -825,8 +668,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">articles</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -839,7 +682,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -889,11 +732,11 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
