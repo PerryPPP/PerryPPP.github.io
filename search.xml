@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[newcoder 清华 最小邮票数]]></title>
+    <url>%2F2018%2F04%2F01%2Fnew%2F</url>
+    <content type="text"><![CDATA[清华复试上机 最小邮票数 题解题目描述：​ 有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。 输入描述:1有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&lt;100。然后是一个数N，N〈20，表示有N张邮票。接下来是N个正整数，分别表示这N张邮票的面值，且以升序排列。 输出描述:1对于每组数据，能够凑成总值M的最少邮票张数。若无解，输出0。 ​ 本题是一个01背包的变形，将每张邮票的价值看作1，要求在背包容量必须装满的情况下，价值达到最小。可以用动态规划来解决。 ​ 可以用一个二维数组dp[i][j]来表示在前i张里面填满空间j的最小邮票张数，则有dp[i][j] = min(dp[i -1][j] , dp[i - 1][j - ticket[i]] + 1) 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;int main() &#123; int M, N; int dp[101]; int ticket[21]; while(cin &gt;&gt; M &gt;&gt; N) &#123; for(int i = 0; i &lt; N; i++) cin &gt;&gt; ticket[i];//用数组ticket来存储第i张邮票的价值 for(int i = 0; i &lt; 101; i++) dp[i] = N + 1;//面值为i时需要的邮票数量,将其统一初始化为当前的最大值N+1 dp[0] = 0; dp[ticket[0]] = 1; for(int i = 1; i &lt;= N; i++) &#123;//i张邮票 for(int j = M; j &gt;= ticket[i]; j--) &#123; dp[j] = min(dp[j], dp[j - ticket[i]] + 1); &#125; &#125; if(dp[M] &lt;= N) cout &lt;&lt; dp[M] &lt;&lt; endl; else cout &lt;&lt; 0 &lt;&lt;endl; &#125; return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[算法竞赛入门经典习题2-5题解]]></title>
+    <url>%2F2018%2F03%2F31%2F%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8%E4%B9%A0%E9%A2%98%E9%A2%98%E8%A7%A3%20%2F</url>
+    <content type="text"><![CDATA[算法竞赛入门经典习题2-5分数化小数(decimal)题目描述： ​ 输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。$a,b &lt;= 10 ^ 6$, $c &lt;= 100$。 输入包含多组数据，结束标记为a = b = c = 0。 ​ 因为这道题发现了printf的一种神奇的用法0.0。 1printf("%*.*lf\n", a, b, (double) c / d); ​ 其中，格式控制符%a.bf 表达的含义是：打印a位有效数字的b位小数。 %f是打印实数数据（float double类型的数据） a表示有效数字个数，b表示小数点后的位数。在本题中，只限制了小数点后的位数是c位，因此代码如下： 123456789101112#include&lt;stdio.h&gt;int main() &#123; int a, b, c; while(1) &#123; scanf("%d%d%d", &amp;a, &amp;b, &amp;c); if(a == 0 &amp;&amp; b == 0 &amp;&amp; c == 0) break; double ans = (double)a / b; printf("%.*f\n", c, ans); &#125; return 0;&#125;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[远程连接服务器的操作说明]]></title>
+    <url>%2F2017%2F12%2F10%2F%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E%2F</url>
+    <content type="text"><![CDATA[远程连接服务器的操作说明​ 在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。 一、有关服务器的简单操作1、 远程连接服务器​ 需要的知识储备：linux操作系统下常用的指令、linux文件系统的结构 ​ 需要的软件：仅列举本人实际使用过的putty和Xshell。（下文以putty的界面为例） ​ 在界面中输入下列信息: 主机名称：120.78.182.65 （这是本人测试开发用的服务器的外网ip，仅作示例。在这里填写自己要连接的远程服务器的ip地址即可） 端口号：22 退出时关闭系统：仅正常退出 然后点击打开，即看到如下界面： ​ 在login as: 提示后输入自己想要登陆的用户名（若输入root后，则以root身份登入服务器。）在界面提示输入密码时，输入自己设置好的密码。 ​ 敲击回车键，看到如下界面即为登入成功，可进行一系列操作。（此时的操作全部会同步到远程服务器端。） 2、 将本地的网站资源上传至服务器​ 下载一个文档上传用的软件，本文以FileZilla为例,完成安装后运行，看到如图所示界面。 点击菜单栏的“文件”选项，选择站点管理器，完成如下配置。 ​ 主机名和端口号与上文叙述的一致，协议选择SFTP。在用户名和密码栏填写自己想要在远程服务器端登陆的用户名和对应的密码。考虑到项目资源管理的独立性，一般来说，不建议以root用户登陆。 ​ 点击连接。看到如下界面即为连接成功。 ​ 本地站点的文件目录即为本地机器的文件目录，右侧即为服务器的文件目录，可通过更改远程站点栏的路径名，查看服务器各个文件目录下的资源。Apache2的默认网站路径为/var/www/html，将资源上传至这个目录下即可在浏览器得到显示。]]></content>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[first test page]]></title>
+    <url>%2F2017%2F11%2F27%2Ffirst-test-page%2F</url>
+    <content type="text"><![CDATA[你好，欢迎来到我的技术博客]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F11%2F27%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
