@@ -94,14 +94,17 @@
 
 
 
+<meta name="description" content="清华复试上机 最小邮票数 题解题目描述：​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。 输入描述:1有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&amp;lt;100。然后是一个数N，N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="new">
+<meta property="og:title" content="newcoder 清华 最小邮票数">
 <meta property="og:url" content="https://perryppp.github.io/2018/04/01/new/index.html">
 <meta property="og:site_name" content="Perry&#39;s blog">
+<meta property="og:description" content="清华复试上机 最小邮票数 题解题目描述：​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。 输入描述:1有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&amp;lt;100。然后是一个数N，N〈20，表示有N张邮票。接下来是N个正整数，分别表示这N张邮票的面值，且以升序排列。 输">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-01T10:53:17.360Z">
+<meta property="og:updated_time" content="2018-04-01T11:31:31.230Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="new">
+<meta name="twitter:title" content="newcoder 清华 最小邮票数">
+<meta name="twitter:description" content="清华复试上机 最小邮票数 题解题目描述：​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。 输入描述:1有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&amp;lt;100。然后是一个数N，N〈20，表示有N张邮票。接下来是N个正整数，分别表示这N张邮票的面值，且以升序排列。 输">
 
 
 
@@ -136,7 +139,7 @@
 
 
 
-  <title>new | Perry's blog</title>
+  <title>newcoder 清华 最小邮票数 | Perry's blog</title>
   
 
 
@@ -276,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">new</h1>
+          <h1 class="post-title" itemprop="name headline">newcoder 清华 最小邮票数</h1>
         
 
         <div class="post-meta">
@@ -326,7 +329,13 @@
       
 
       
-        
+        <h2 id="清华复试上机-最小邮票数-题解"><a href="#清华复试上机-最小邮票数-题解" class="headerlink" title="清华复试上机 最小邮票数 题解"></a>清华复试上机 最小邮票数 题解</h2><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。</p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&lt;100。然后是一个数N，N〈20，表示有N张邮票。接下来是N个正整数，分别表示这N张邮票的面值，且以升序排列。</span><br></pre></td></tr></table></figure>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于每组数据，能够凑成总值M的最少邮票张数。若无解，输出0。</span><br></pre></td></tr></table></figure>
+<p>​    本题是一个01背包的变形，将每张邮票的价值看作1，要求在背包容量必须装满的情况下，价值达到最小。可以用动态规划来解决。</p>
+<p>​    可以用一个二维数组dp[i][j]来表示在前i张里面填满空间j的最小邮票张数，则有dp[i][j] = min(dp[i -1][j] , dp[i - 1][j - ticket[i]] + 1)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> M, N;</span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">101</span>];</span><br><span class="line">    <span class="keyword">int</span> ticket[<span class="number">21</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; M &gt;&gt; N) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) </span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; ticket[i];<span class="comment">//用数组ticket来存储第i张邮票的价值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">101</span>; i++)</span><br><span class="line">            dp[i] = N + <span class="number">1</span>;<span class="comment">//面值为i时需要的邮票数量,将其统一初始化为当前的最大值N+1</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        dp[ticket[<span class="number">0</span>]] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++) &#123;<span class="comment">//i张邮票</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = M; j &gt;= ticket[i]; j--) &#123;</span><br><span class="line">                    dp[j] = min(dp[j], dp[j - ticket[i]] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dp[M] &lt;= N)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; dp[M] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">0</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -410,8 +419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -438,10 +456,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">Tags</span>
-              
+              </a>
             </div>
           
 
@@ -464,6 +482,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#清华复试上机-最小邮票数-题解"><span class="nav-number">1.</span> <span class="nav-text">清华复试上机 最小邮票数 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述："><span class="nav-number">1.1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入描述"><span class="nav-number">1.2.</span> <span class="nav-text">输入描述:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出描述"><span class="nav-number">1.3.</span> <span class="nav-text">输出描述:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
