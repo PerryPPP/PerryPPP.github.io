@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="日常," />
 
 
 
@@ -94,14 +94,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://perryppp.github.io/tags/index.html">
+<meta name="description" content="数组中&amp;amp;a与&amp;amp;a[0](即a)的区别​    在newcoder上写数组相关题目时遇到了这样一个问题： 12345//以下 C 语言指令：int a[5] = &amp;#123;1,3,5,7,9&amp;#125;;int *p = (int *)(&amp;amp;a+1);pri">
+<meta name="keywords" content="日常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组中&amp;a与&amp;a[0]的区别">
+<meta property="og:url" content="https://perryppp.github.io/2018/04/08/new-1/index.html">
 <meta property="og:site_name" content="Perry&#39;s blog">
+<meta property="og:description" content="数组中&amp;amp;a与&amp;amp;a[0](即a)的区别​    在newcoder上写数组相关题目时遇到了这样一个问题： 12345//以下 C 语言指令：int a[5] = &amp;#123;1,3,5,7,9&amp;#125;;int *p = (int *)(&amp;amp;a+1);printf(“%d,%d”,*(a+1) ， *(p-1));//运行结果是什么？ ​    读者可以先自己思考一下这个问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-01T11:36:34.223Z">
+<meta property="og:updated_time" content="2018-04-08T11:40:36.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="数组中&amp;a与&amp;a[0]的区别">
+<meta name="twitter:description" content="数组中&amp;amp;a与&amp;amp;a[0](即a)的区别​    在newcoder上写数组相关题目时遇到了这样一个问题： 12345//以下 C 语言指令：int a[5] = &amp;#123;1,3,5,7,9&amp;#125;;int *p = (int *)(&amp;amp;a+1);printf(“%d,%d”,*(a+1) ， *(p-1));//运行结果是什么？ ​    读者可以先自己思考一下这个问题">
 
 
 
@@ -130,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://perryppp.github.io/tags/"/>
+  <link rel="canonical" href="https://perryppp.github.io/2018/04/08/new-1/"/>
 
 
 
 
 
-  <title>tags | Perry's blog</title>
+  <title>数组中&a与&a[0]的区别 | Perry's blog</title>
   
 
 
@@ -267,40 +271,150 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/04/08/new-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PerryPPP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Perry's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                1 tag in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/日常/" style="font-size: 12px; color: #ccc">日常</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">数组中&a与&a[0]的区别</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T19:29:19+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="数组中-amp-a与-amp-a-0-即a-的区别"><a href="#数组中-amp-a与-amp-a-0-即a-的区别" class="headerlink" title="数组中&amp;a与&amp;a[0](即a)的区别"></a>数组中&amp;a与&amp;a[0](即a)的区别</h3><p>​    在newcoder上写数组相关题目时遇到了这样一个问题：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下 C 语言指令：</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)(&amp;a+<span class="number">1</span>);</span><br><span class="line"><span class="built_in">printf</span>(“%d,%d”,*(a+<span class="number">1</span>) ， *(p<span class="number">-1</span>));</span><br><span class="line"><span class="comment">//运行结果是什么？</span></span><br></pre></td></tr></table></figure>
+<p>​    读者可以先自己思考一下这个问题~ 在这道题中，*(a+1)的输出结果是非常常规容易思考的，而*(int*)(&amp;a+1)的输出结果则需要一定的思考。</p>
+<p>​    下面公布正确答案：3,9。</p>
+<p>​    题目中首先定义了一个可以存在</p>
+<p>​    题目中首先定义了存放5个int类型空间大小的内存，然后初始化5个数。我们知道直接使用数组的名字a表示的是一个指向数组首地址的指针，所以<strong>直接a与&amp;a[0]是相同的意思，都表示数组的首地址。</strong>所以<em>(a+1)很好理解，假设a地址是0x1000，就是取（0x1000+sizeof(int)）地址的数，由于数组的物理地址是连续的，当然就是取2。<br>　　那&amp;a表示什么意思呢，相当于取存放指向数组首地址的指针的存储地址，话有些绕，但是细细品味你就会发现，<strong>它就相当于二维指针</strong>，假设每个一维指针指向一排数组（当然除了第一个一维数组的指针之外实际都没有申请，但是在访问野指针之前计算机也不知道那块地址是否存在，但的确可以由物理地址连续性来获取这块地址的表示），**所以简言之&amp;a表示第一排数组，&amp;a+1就是表示第二排数组（就是5\</em>sizeof(int)=5<em>4=20空间大小后一段空间的首地址）。**<br>　　有了上面的介绍就好理解了，</em>(ptr-1)是表示取(0x1000+5<em>sizeof(int)-sizeof(int))地址中的数，算得为5。<br>　　<strong>总结：</strong><br>　　<em>*&amp;a[0]表示数组的首地址，与直接a相同意义。而&amp;a表示存储指向数组首地址的指针的地址，可以用二维指针来理解。</em></em></p>
+<p>*(int*)(&amp;a+1)</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/日常/" rel="tag"># 日常</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/new/" rel="next" title="newcoder 清华 10进制 VS 2进制">
+                <i class="fa fa-chevron-left"></i> newcoder 清华 10进制 VS 2进制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -309,6 +423,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -329,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -383,6 +510,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组中-amp-a与-amp-a-0-即a-的区别"><span class="nav-number">1.</span> <span class="nav-text">数组中&a与&a[0](即a)的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -503,10 +646,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 

@@ -280,6 +280,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/04/08/new-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PerryPPP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Perry's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/08/new-1/" itemprop="url">数组中&a与&a[0]的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T19:29:19+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          数组中&amp;a与&amp;a[0](即a)的区别​    在newcoder上写数组相关题目时遇到了这样一个问题：
+12345//以下 C 语言指令：int a[5] = &#123;1,3,5,7,9&#125;;int *p = (int *)(&amp;a+1);printf(“%d,%d
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/08/new-1/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/04/01/new/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,22 +478,15 @@
       
         
           
-            <h2 id="清华复试上机-10进制-VS-2进制-题解"><a href="#清华复试上机-10进制-VS-2进制-题解" class="headerlink" title="清华复试上机 10进制 VS 2进制 题解"></a>清华复试上机 10进制 VS 2进制 题解</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>​    对于一个十进制数A，将A转换为二进制数，然后按位逆序排列，再转换为十进制数B，我们乘B为A的二进制逆序数。     例如对于十进制数173，它的二进制形式为10101101，逆序排列得到10110101，其十进制数为181，181即为173的二进制逆序数。</p>
-<h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个1000位(即10^999)以内的十进制数。</span><br></pre></td></tr></table></figure>
-<h2 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入的十进制数的二进制逆序数。</span><br></pre></td></tr></table></figure>
-<p>​    这是本人目前刷题到现在最讨厌的题型，大整数的各种操作。因为超过了long long 的表示范围，所以只能用字符串或者int数组来存储数据，然后逐位操作。</p>
-<p>​    这里使用string类型来存储大整数滴~</p>
-<p>​    需要实现的功能函数有：字符串的除法、加法和乘法。思路都非常简单一致，就是按照运算规则，从高位到低位(除法)、从低位到高位(加法、乘法)逐位来进行运算。</p>
-<p>​    字符串的除法(因为是转换成二进制，所以是计算除以2的情况)：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">div</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;<span class="comment">//从高位到低位</span></span><br><span class="line">        now = now * <span class="number">10</span> + (s[i] - <span class="string">'0'</span>);</span><br><span class="line">        <span class="keyword">if</span>(ret == <span class="string">""</span> &amp;&amp; now / <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">continue</span>;<span class="comment">//除去先导0</span></span><br><span class="line">        ret = ret + <span class="keyword">char</span>(<span class="string">'0'</span> + now / <span class="number">2</span>);</span><br><span class="line">        now %= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ret == <span class="string">""</span>) ret = <span class="string">"0"</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    字符串的加法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string add(string s) &#123;</span><br><span class="line">    int c = 1, tmp;</span><br><span class="line">    for(int i = s.length() - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        tmp = (s[i] - &apos;0&apos;) + c;</span><br><span class="line">        s[i] = char(tmp % 10 + &apos;0&apos;);</span><br><span class="line">        c = tmp / 10;//c现在用来保存进位</span><br><span class="line">        if(c == 0) return s;//如果进位停止则说明之后的数字不会发生变化，直接返回</span><br><span class="line">    &#125;</span><br><span class="line">    return &quot;1&quot; + s;//最多进一位1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    字符串的乘法(*2)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string mul(string s) &#123;</span><br><span class="line">    int c = 0, tmp;</span><br><span class="line">    for(int i = s.length() - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        tmp = (s[i] - &apos;0&apos;) * 2 + c;</span><br><span class="line">        s[i] = char(tmp % 10 + &apos;0&apos;);</span><br><span class="line">        c = tmp / 10;</span><br><span class="line">    &#125;</span><br><span class="line">    if(c) s = char(c + &apos;0&apos;) + s;</span><br><span class="line">    return s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    整体的代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">div</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        now = now * <span class="number">10</span> + (s[i] - <span class="string">'0'</span>);</span><br><span class="line">        <span class="keyword">if</span>(ret == <span class="string">""</span> &amp;&amp; now / <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        ret = ret + <span class="keyword">char</span>(<span class="string">'0'</span> + now / <span class="number">2</span>);</span><br><span class="line">        now %= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ret == <span class="string">""</span>) ret = <span class="string">"0"</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">add</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = <span class="number">1</span>, tmp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = s.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        tmp = (s[i] - <span class="string">'0'</span>) + c;</span><br><span class="line">        s[i] = <span class="keyword">char</span>(tmp % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">        c = tmp / <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span>(c == <span class="number">0</span>) <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"1"</span> + s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">mul</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = <span class="number">0</span>, tmp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = s.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        tmp = (s[i] - <span class="string">'0'</span>) * <span class="number">2</span> + c;</span><br><span class="line">        s[i] = <span class="keyword">char</span>(tmp % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">        c = tmp / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(c) s = <span class="keyword">char</span>(c + <span class="string">'0'</span>) + s;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> num;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; num) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp;</span><br><span class="line">        <span class="built_in">string</span> ans = <span class="string">"0"</span>;</span><br><span class="line">        <span class="keyword">while</span>(num != <span class="string">"0"</span>) &#123;</span><br><span class="line">            tmp = num[num.length() - <span class="number">1</span>] - <span class="string">'0'</span>;<span class="comment">//最后一位</span></span><br><span class="line">            ans = mul(ans);</span><br><span class="line">            <span class="keyword">if</span>(tmp &amp; <span class="number">1</span>) &#123;</span><br><span class="line">                num[num.length() - <span class="number">1</span>]--;</span><br><span class="line">                ans = add(ans);</span><br><span class="line">            &#125;</span><br><span class="line">            num = div(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          清华复试上机 10进制 VS 2进制 题解题目描述​    对于一个十进制数A，将A转换为二进制数，然后按位逆序排列，再转换为十进制数B，我们乘B为A的二进制逆序数。     例如对于十进制数173，它的二进制形式为10101101，逆序排列得到10110101，其十进制数为181，181即为173
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/01/new/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -484,14 +604,16 @@
       
         
           
-            <h2 id="清华复试上机-最小邮票数-题解"><a href="#清华复试上机-最小邮票数-题解" class="headerlink" title="清华复试上机 最小邮票数 题解"></a>清华复试上机 最小邮票数 题解</h2><h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。</p>
-<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&lt;100。然后是一个数N，N〈20，表示有N张邮票。接下来是N个正整数，分别表示这N张邮票的面值，且以升序排列。</span><br></pre></td></tr></table></figure>
-<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于每组数据，能够凑成总值M的最少邮票张数。若无解，输出0。</span><br></pre></td></tr></table></figure>
-<p>​    本题是一个01背包的变形，将每张邮票的价值看作1，要求在背包容量必须装满的情况下，价值达到最小。可以用动态规划来解决。</p>
-<p>​    可以用一个二维数组dp[i][j]来表示在前i张里面填满空间j的最小邮票张数，则有dp[i][j] = min(dp[i -1][j] , dp[i - 1][j - ticket[i]] + 1)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> M, N;</span><br><span class="line">    <span class="keyword">int</span> dp[<span class="number">101</span>];</span><br><span class="line">    <span class="keyword">int</span> ticket[<span class="number">21</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; M &gt;&gt; N) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) </span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; ticket[i];<span class="comment">//用数组ticket来存储第i张邮票的价值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">101</span>; i++)</span><br><span class="line">            dp[i] = N + <span class="number">1</span>;<span class="comment">//面值为i时需要的邮票数量,将其统一初始化为当前的最大值N+1</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        dp[ticket[<span class="number">0</span>]] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++) &#123;<span class="comment">//i张邮票</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = M; j &gt;= ticket[i]; j--) &#123;</span><br><span class="line">                    dp[j] = min(dp[j], dp[j - ticket[i]] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dp[M] &lt;= N)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; dp[M] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="number">0</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          清华复试上机 最小邮票数 题解题目描述：​    有若干张邮票，要求从中选取最少的邮票张数凑成一个给定的总值。如，有1分，3分，3分，3分，4分五张邮票，要求凑成10分，则使用3张邮票：3分、3分、4分即可。
+输入描述:1有多组数据，对于每组数据，首先是要求凑成的邮票总值M，M&lt;100。然后是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/01/最小邮票数/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -609,15 +731,18 @@
       
         
           
-            <h2 id="算法竞赛入门经典习题2-5"><a href="#算法竞赛入门经典习题2-5" class="headerlink" title="算法竞赛入门经典习题2-5"></a>算法竞赛入门经典习题2-5</h2><h3 id="分数化小数-decimal"><a href="#分数化小数-decimal" class="headerlink" title="分数化小数(decimal)"></a>分数化小数(decimal)</h3><p>题目描述：</p>
-<p>​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &lt;= 10 ^ 6$, $c &lt;= 100。</p>
-<p>输入包含多组数据，结束标记为a = b = c = 0。</p>
-<p>​    因为这道题发现了printf的一种神奇的用法0.0。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*lf\n"</span>, a, b, (<span class="keyword">double</span>) c / d);</span><br></pre></td></tr></table></figure>
-<p>​    其中，格式控制符%a.bf 表达的含义是：打印a位有效数字的b位小数。 %f是打印实数数据（float double类型的数据） a表示有效数字个数，b表示小数点后的位数。在本题中，只限制了小数点后的位数是c位，因此代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a, b, c;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">    <span class="keyword">if</span>(a == <span class="number">0</span> &amp;&amp; b == <span class="number">0</span> &amp;&amp; c == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  	<span class="keyword">double</span> ans = (<span class="keyword">double</span>)a / b;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.*f\n"</span>, c, ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          算法竞赛入门经典习题2-5分数化小数(decimal)题目描述：
+​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &lt;= 10 ^ 6$, $c &lt;= 100。
+输入包含多组数据，结束标记为a = b = c = 0。
+​    因为这道题发现了pr
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/31/算法竞赛入门经典习题题解 /#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -735,28 +860,15 @@
       
         
           
-            <h2 id="远程连接服务器的操作说明"><a href="#远程连接服务器的操作说明" class="headerlink" title="远程连接服务器的操作说明"></a>远程连接服务器的操作说明</h2><p>​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。</p>
-<h3 id="一、有关服务器的简单操作"><a href="#一、有关服务器的简单操作" class="headerlink" title="一、有关服务器的简单操作"></a>一、有关服务器的简单操作</h3><h4 id="1、-远程连接服务器"><a href="#1、-远程连接服务器" class="headerlink" title="1、 远程连接服务器"></a>1、 远程连接服务器</h4><p>​    需要的知识储备：linux操作系统下常用的指令、linux文件系统的结构</p>
-<p>​    需要的软件：仅列举本人实际使用过的putty和Xshell。（下文以putty的界面为例）</p>
-<p>​    在界面中输入下列信息:</p>
-<p>主机名称：120.78.182.65 （这是本人测试开发用的服务器的外网ip，仅作示例。在这里填写自己要连接的远程服务器的ip地址即可）</p>
-<p>端口号：22</p>
-<p>退出时关闭系统：仅正常退出</p>
-<p>然后点击打开，即看到如下界面：</p>
-<p><img src="/img/1.png" alt="img1"></p>
-<p>​    在login as: 提示后输入自己想要登陆的用户名（若输入root后，则以root身份登入服务器。）在界面提示输入密码时，输入自己设置好的密码。</p>
-<p>​    敲击回车键，看到如下界面即为登入成功，可进行一系列操作。（此时的操作全部会同步到远程服务器端。）</p>
-<p><img src="/img/2.png" alt="img2"></p>
-<h3 id="2、-将本地的网站资源上传至服务器"><a href="#2、-将本地的网站资源上传至服务器" class="headerlink" title="2、 将本地的网站资源上传至服务器"></a>2、 将本地的网站资源上传至服务器</h3><p>​    下载一个文档上传用的软件，本文以FileZilla为例,完成安装后运行，看到如图所示界面。</p>
-<p><img src="/img/3.png" alt="img3"></p>
-<pre><code>点击菜单栏的“文件”选项，选择站点管理器，完成如下配置。
-</code></pre><p><img src="/img/4.png" alt="img4"></p>
-<p>​    主机名和端口号与上文叙述的一致，协议选择SFTP。在用户名和密码栏填写自己想要在远程服务器端登陆的用户名和对应的密码。考虑到项目资源管理的独立性，一般来说，不建议以root用户登陆。</p>
-<p>​    点击连接。看到如下界面即为连接成功。</p>
-<p><img src="/img/5.png" alt="img5"></p>
-<p>​    本地站点的文件目录即为本地机器的文件目录，右侧即为服务器的文件目录，可通过更改远程站点栏的路径名，查看服务器各个文件目录下的资源。Apache2的默认网站路径为/var/www/html，将资源上传至这个目录下即可在浏览器得到显示。</p>
-
-          
+          远程连接服务器的操作说明​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/10/远程连接服务器的操作说明/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -874,9 +986,16 @@
       
         
           
-            <p>你好，欢迎来到我的技术博客</p>
+          你好，欢迎来到我的技术博客
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/27/first-test-page/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -994,17 +1113,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/27/hello-world/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1084,7 +1201,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
