@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="如何编写一个简单的shellcode1、写在前面​    最近在准备《安全编程》的考试，感觉shellcode学起来懵懵的&amp;gt; &amp;lt;但是！！！身为一个信息安全专业的学生，不会写shellcode简直就是死咸鱼啊！Shellcode是探测到漏洞时执行的代码，是漏洞利用时十分重要的一块内容~请跟本咸">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何编写一个简单的shellcode">
+<meta property="og:url" content="https://perryppp.github.io/2018/08/23/如何编写一个简单的shellcode/index.html">
+<meta property="og:site_name" content="Perry&#39;s blog">
+<meta property="og:description" content="如何编写一个简单的shellcode1、写在前面​    最近在准备《安全编程》的考试，感觉shellcode学起来懵懵的&amp;gt; &amp;lt;但是！！！身为一个信息安全专业的学生，不会写shellcode简直就是死咸鱼啊！Shellcode是探测到漏洞时执行的代码，是漏洞利用时十分重要的一块内容~请跟本咸鱼一起来学习一个[围笑]。 2、系统调用函数execve示例代码1： 123456789//sh">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-23T12:26:22.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何编写一个简单的shellcode">
+<meta name="twitter:description" content="如何编写一个简单的shellcode1、写在前面​    最近在准备《安全编程》的考试，感觉shellcode学起来懵懵的&amp;gt; &amp;lt;但是！！！身为一个信息安全专业的学生，不会写shellcode简直就是死咸鱼啊！Shellcode是探测到漏洞时执行的代码，是漏洞利用时十分重要的一块内容~请跟本咸鱼一起来学习一个[围笑]。 2、系统调用函数execve示例代码1： 123456789//sh">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://perryppp.github.io/2018/08/23/如何编写一个简单的shellcode/"/>
+
+
+
+
+
+  <title>如何编写一个简单的shellcode | Perry's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Perry's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/08/23/如何编写一个简单的shellcode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PerryPPP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Perry's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何编写一个简单的shellcode</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T20:25:13+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="如何编写一个简单的shellcode"><a href="#如何编写一个简单的shellcode" class="headerlink" title="如何编写一个简单的shellcode"></a>如何编写一个简单的shellcode</h3><h4 id="1、写在前面"><a href="#1、写在前面" class="headerlink" title="1、写在前面"></a>1、写在前面</h4><p>​    最近在准备《安全编程》的考试，感觉shellcode学起来懵懵的&gt; &lt;但是！！！身为一个信息安全专业的学生，不会写shellcode简直就是死咸鱼啊！Shellcode是探测到漏洞时执行的代码，是漏洞利用时十分重要的一块内容~请跟本咸鱼一起来学习一个[围笑]。</p>
+<h4 id="2、系统调用函数execve"><a href="#2、系统调用函数execve" class="headerlink" title="2、系统调用函数execve"></a>2、系统调用函数execve</h4><p>示例代码1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//shellcode.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span>* name[<span class="number">2</span>];</span><br><span class="line">  	name[<span class="number">0</span>] = <span class="string">"bin/ksh"</span>;</span><br><span class="line">  	name[<span class="number">1</span>] = <span class="literal">NULL</span>;</span><br><span class="line">  	execve(name[<span class="number">0</span>], name, <span class="literal">NULL</span>);</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    *通过系统调用execve函数来返回shell。</p>
+<p>​    从上述程序中可以看出，在c语言中调用execve函数来返回shell时，需要包含相应的头文件，在主函数中调用execve函数，同时传入三个参数。</p>
+<p><strong>execve函数的介绍：</strong></p>
+<p>​    execve（执行文件）在父进程中fork一个子进程，在子进程中调用exec函数启动新的程序。execve是内核级调用函数。</p>
+<p>​    <strong>函数定义</strong>  int execve（const char<em> filename, char</em> const argv[], char* const envp[]）</p>
+<p>​    <strong>返回值</strong>  执行成功时没有返回值，执行失败时的返回值为-1.</p>
+<p>​    <strong>函数说明</strong>  execve()用来执行参数filename字符串所代表的文件路径，第二个参数是利用数组指针来传递给执行文件，并且需要以NULL指针结束，最后一个参数则为传递给执行文件的新环境变量数组。</p>
+<p>示例代码2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span>* argv[] = &#123;<span class="string">"ls"</span>, <span class="string">"-al"</span>, <span class="string">"/etc/passwd"</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">  	<span class="keyword">char</span>* envp[] = &#123;<span class="string">"PATH = /bin"</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">  	execve(<span class="string">"/bin/ls"</span>, argv, envp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​     上述代码实现的功能：与在bin目录下执行 ls -al /etc/passwd 是相同的。</p>
+<p>​    通过在<a href="http://syscalls.kernelgrok.com" target="_blank" rel="noopener">http://syscalls.kernelgrok.com</a>查询到的系统调用表，可以获得sys_execve函数的相关信息：</p>
+<p>​        execve函数的系统调用号为11，对应的寄存器中保留的参数值分别为：eax：0x0b（11！）;     ebx：char _user*;     ecx：char _user*  user*;     edx：char  _user* user*;    esi：struct pt_regs *;     edi：—。</p>
+<h4 id="3、用汇编语言来编写shellcode"><a href="#3、用汇编语言来编写shellcode" class="headerlink" title="3、用汇编语言来编写shellcode"></a>3、用汇编语言来编写shellcode</h4><p>​    通过反编译获得的汇编代码来研究如何用汇编语言编写shellcode。</p>
+<p>​    对示例代码1进行如下操作：</p>
+<p>​    1、编译所编写的代码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[scz@ /home/scz/src]&gt; gcc -o shellcode –g gdb -static shellcode.c</span><br></pre></td></tr></table></figure>
+<p>​    2、用gdb调试执行代码，对main进行反汇编。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[scz@ /home/scz/src]&gt; gdb shellcode</span><br><span class="line">GNU gdb 4.17.0.11 with Linux support</span><br><span class="line">This GDB was configured as "i386-redhat-linux"...</span><br><span class="line">(gdb) disassemble main &lt;-- -- -- 输入</span><br><span class="line">Dump of assembler code for function main:</span><br><span class="line">0x80481a0 :    pushl  %ebp</span><br><span class="line">0x80481a1 :    movl   %esp,%ebp  //设置新的栈底</span><br><span class="line">0x80481a3 :    subl   $0x8,%esp //设置新的栈顶</span><br><span class="line">0x80481a6 :    movl   $0x806f308,0xfffffff8(%ebp) //name[0]的地址</span><br><span class="line">0x80481ad :    movl   $0x0,0xfffffffc(%ebp) //name[1]的地址</span><br><span class="line">0x80481b4 :    pushl  $0x0  //压入execve的第3个参数</span><br><span class="line">0x80481b6 :    leal   0xfffffff8(%ebp),%eax</span><br><span class="line">0x80481b9 :    pushl  %eax //压入execve的第2个参数</span><br><span class="line">0x80481ba :    movl   0xfffffff8(%ebp),%eax</span><br><span class="line">0x80481bd :    pushl  %eax //压入execve的第1个参数</span><br><span class="line">0x80481be :    call   0x804b9b0 &lt;__execve&gt;  //调用execve</span><br><span class="line">0x80481c3 :    addl   $0xc,%esp //恢复栈顶</span><br><span class="line">0x80481c6 :    xorl   %eax,%eax</span><br><span class="line">0x80481c8 :    jmp    0x80481d0 </span><br><span class="line">0x80481ca :    leal   0x0(%esi),%esi</span><br><span class="line">0x80481d0 :    leave //释放当前子程序在堆栈中的局部变量</span><br><span class="line">0x80481d1 :    ret</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>​    3、对execve函数进行反汇编。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disas __execve &lt;-- -- -- 输入</span><br><span class="line">Dump of assembler code for function __execve:</span><br><span class="line">0x804b9b0 &lt;__execve&gt;:   	pushl  %ebx</span><br><span class="line">0x804b9b1 &lt;__execve+1&gt;:	 	movl   0x10(%esp,1),%edx</span><br><span class="line">0x804b9b5 &lt;__execve+5&gt;: 	movl   0xc(%esp,1),%ecx</span><br><span class="line">0x804b9b9 &lt;__execve+9&gt;: 	movl   0x8(%esp,1),%ebx</span><br><span class="line">0x804b9bd &lt;__execve+13&gt;:    movl   $0xb,%eax</span><br><span class="line">0x804b9c2 &lt;__execve+18&gt;:    int    $0x80</span><br><span class="line">0x804b9c4 &lt;__execve+20&gt;:    popl   %ebx</span><br><span class="line">0x804b9c5 &lt;__execve+21&gt;:    cmpl   $0xfffff001,%eax</span><br><span class="line">0x804b9ca &lt;__execve+26&gt;:    jae    0x804bcb0 &lt;__syscall_error&gt;</span><br><span class="line">0x804b9d0 &lt;__execve+32&gt;:    ret</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>​    4、研究main函数的汇编代码。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">0x80481a0 :	pushl  %ebp # 保存原来的栈基指针</span><br><span class="line">                        # 栈基指针与堆栈指针不是一个概念</span><br><span class="line">                        # 栈基指针对应栈底，堆栈指针对应栈顶</span><br><span class="line">0x80481a1 :	movl   %esp,%ebp  # 修改得到新的栈基指针</span><br><span class="line">                              # 与在dos下汇编格式不一样</span><br><span class="line">                              # 这个语句是说把esp的值赋给ebp</span><br><span class="line">                              # 而在dos下，正好是反过来的，一定要注意</span><br><span class="line">0x80481a3 :	subl   $0x8,%esp    # 堆栈指针向栈顶移动八个字节</span><br><span class="line">                                # 用于分配局部变量的存储空间</span><br><span class="line">                                # 这里具体就是给 char * name[2] 预留空间</span><br><span class="line">                                # 因为每个字符指针占用4个字节，总共两个指针</span><br><span class="line">0x80481a6 :	movl   $0x806f308,0xfffffff8(%ebp)   # 将字符串"/bin/ksh"的地址拷贝到name[0]</span><br><span class="line">                                         	     # name[0] = "/bin/ksh";</span><br><span class="line">                                                 # 0xfffffff8(%ebp) 就是 ebp - 8 的意思</span><br><span class="line">                                                 # 注意堆栈的增长方向以及局部变量的分配方向</span><br><span class="line">                                                 # 先分配name[0]后分配name[1]的空间</span><br><span class="line">0x80481ad : movl   $0x0,0xfffffffc(%ebp)  # 将NULL拷贝到name[1]</span><br><span class="line">                                          # name[1] = NULL;</span><br><span class="line">0x80481b4 : pushl  $0x0   # 按从右到左的顺序将execve()的三个参数依次压栈</span><br><span class="line">                          # 首先压入 NULL (第三个参数)</span><br><span class="line">                          # 注意pushl将压入一个四字节长的0</span><br><span class="line">0x80481b6 : leal   0xfffffff8(%ebp),%eax    # 将 ebp - 8 本身放入eax寄存器中</span><br><span class="line">                                            # leal的意思是取地址，而不是取值</span><br><span class="line">0x80481b9 : pushl  %eax  # 其次压入 name</span><br><span class="line">0x80481ba : movl   0xfffffff8(%ebp),%eax</span><br><span class="line">0x80481bd : pushl  %eax  # 将 ebp - 8 本身放入eax寄存器中</span><br><span class="line">                         # 最后压入 name[0]</span><br><span class="line">                         # 即 "/bin/ksh" 字符串的地址</span><br><span class="line">0x80481be : call   0x804b9b0 &lt;__execve&gt;  # 开始调用 execve()</span><br><span class="line">                                         # call指令首先会将返回地址压入堆栈</span><br><span class="line">0x80481c3 : addl   $0xc,%esp   # esp + 12</span><br><span class="line">                               # 释放为了调用 execve() 而压入堆栈的内容</span><br><span class="line">0x80481c6 : xorl   %eax,%eax</span><br><span class="line">0x80481c8 : jmp    0x80481d0 </span><br><span class="line">0x80481ca : leal   0x0(%esi),%esi</span><br><span class="line">0x80481d0 : leave</span><br><span class="line">0x80481d1 : ret</span><br></pre></td></tr></table></figure>
+<p>​    5、研究execve函数的汇编代码。Linux在寄存器里传递它的参数给系统调用，用软件中断跳到kernel模式(int<br>$0x80)。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">0x804b9b0 &lt;__execve&gt;:   pushl  %ebx  # ebx压栈</span><br><span class="line">0x804b9b1 &lt;__execve+1&gt;: movl   0x10(%esp,1),%edx   # 把 esp + 16 本身赋给edx</span><br><span class="line">                                         		   # 为什么是16，因为栈顶现在是ebx</span><br><span class="line">                                         		   # 下面依次是返回地址、name[0]、name、NULL</span><br><span class="line">                                         		   # edx --&gt; NULL</span><br><span class="line">0x804b9b5 &lt;__execve+5&gt;: movl   0xc(%esp,1),%ecx    # 把 esp + 12 本身赋给 ecx</span><br><span class="line">                                        		   # ecx --&gt; name</span><br><span class="line">                                       		       # 命令的参数数组，包括命令自己</span><br><span class="line">0x804b9b9 &lt;__execve+9&gt;: movl   0x8(%esp,1),%ebx    # 把 esp + 8 本身赋给 ebx</span><br><span class="line">                                                   # ebx --&gt; name[0]</span><br><span class="line">                                                   # 命令本身，"/bin/ksh"</span><br><span class="line">0x804b9bd &lt;__execve+13&gt;:        movl   $0xb,%eax   # 设置eax为0xb，这是syscall表中的索引</span><br><span class="line">                                         		   # 0xb对应execve</span><br><span class="line">0x804b9c2 &lt;__execve+18&gt;:        int    $0x80       # 软件中断，转入kernel模式</span><br><span class="line">0x804b9c4 &lt;__execve+20&gt;:        popl   %ebx        # 恢复ebx</span><br><span class="line">0x804b9c5 &lt;__execve+21&gt;:        cmpl   $0xfffff001,%eax</span><br><span class="line">0x804b9ca &lt;__execve+26&gt;:        jae    0x804bcb0 &lt;__syscall_error&gt;</span><br><span class="line">												  # 判断返回值，报告可能的系统调用错误</span><br><span class="line">0x804b9d0 &lt;__execve+32&gt;:        ret      		  # execve() 调用返回</span><br><span class="line">                                         		  # 该指令会用压在堆栈中的返回地址</span><br></pre></td></tr></table></figure>
+<p>​    Shellcode的开发过程：</p>
+<p>​    从上面的分析可以看出，完成execve() 系统调用，我们所要做的不过是这么几项而已：</p>
+<pre><code>a) 在内存中有以NULL结尾的字符串&quot;/bin/ksh&quot;
+</code></pre><p>​            b) 在内存中有”/bin/ksh”的地址，其后是一个 unsigned long 型的NULL值</p>
+<p>​            c) 将0xb拷贝到寄存器EAX中</p>
+<p>​            d) 将”/bin/ksh”的地址拷贝到寄存器EBX中</p>
+<p>​            e) 将”/bin/ksh”地址的地址拷贝到寄存器ECX中</p>
+<p>​            f) 将 NULL 拷贝到寄存器EDX中</p>
+<p>​            g) 执行中断指令int $0x80</p>
+<pre><code>如果execve()调用失败的话，程序将继续从堆栈中获取指令并执行，而此时堆栈中的数据是随机的，通常这个程序会coredump。我们希望如果execve调用失败的话，程序可以正常退出，因此我们必须在execve调用后增加一个exit系统调用。它的C语言程序如下：
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//shellcode_exit.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    汇编语言代码如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[scz@ /home/scz/src]&gt; gcc -o shellcode_exit -static shellcode_exit.c</span><br><span class="line">[scz@ /home/scz/src]&gt; gdb shellcode_exit</span><br><span class="line">GNU gdb 4.17.0.11 with Linux support</span><br><span class="line">This GDB was configured as "i386-redhat-linux"...</span><br><span class="line">(gdb) disas _exit &lt;-- -- -- 输入</span><br><span class="line">Dump of assembler code for function _exit:</span><br><span class="line">0x804b970 &lt;_exit&gt;:      movl   %ebx,%edx</span><br><span class="line">0x804b972 &lt;_exit+2&gt;:    movl   0x4(%esp,1),%ebx</span><br><span class="line">0x804b976 &lt;_exit+6&gt;:    movl   $0x1,%eax</span><br><span class="line">0x804b97b &lt;_exit+11&gt;:   int    $0x80</span><br><span class="line">0x804b97d &lt;_exit+13&gt;:   movl   %edx,%ebx</span><br><span class="line">0x804b97f &lt;_exit+15&gt;:   cmpl   $0xfffff001,%eax</span><br><span class="line">0x804b984 &lt;_exit+20&gt;:   jae    0x804bc60 &lt;__syscall_error&gt;</span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+<p>​    我们可以看到，exit系统调用将0x1放到EAX中(这是它的syscall索引值)，将退出码放入EBX中，然后执行”int$0x80”。大部分程序正常退出时返回0值，我们也在EBX中放入0。</p>
+<p>​    现在我们所要完成的工作又增加了三项：</p>
+<p>​        h) 将0x1拷贝到寄存器EAX中</p>
+<pre><code>i) 将0x0拷贝到寄存器EBX中
+
+j) 执行中断指令int $0x80
+</code></pre><p>​    同时，要注意不能出现0x00，要避免中途被截断。理清任务之后，可以很容易地用汇编语言写出shellcode：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">section .text</span><br><span class="line">global _start</span><br><span class="line">_start:</span><br><span class="line">xor eax,eax</span><br><span class="line">push eax</span><br><span class="line">push 0x68732f2f ；压入&quot;//sh&quot;</span><br><span class="line">push 0x6e69622f ；压入&quot;/bin&quot;</span><br><span class="line">mov ebx,esp ；将字符串的地址存入ebx</span><br><span class="line">push eax ；压入&quot;0x00&quot;</span><br><span class="line">push ebx ；压入字符串&quot;/bin//sh&quot;的地址</span><br><span class="line">mov ecx,esp ；将指针数组地址存入ecx</span><br><span class="line">xor edx,edx ；[edx] = 0</span><br><span class="line">mov al,0xb ；将11写入eax，execve的系统调用号</span><br><span class="line">int 0x80</span><br><span class="line">mov al,0x1</span><br><span class="line">xor ebx,ebx</span><br><span class="line">int 0x80</span><br></pre></td></tr></table></figure>
+<p>​    根据之前int 0x80中断指令调用形式，要求eax存放系统调用号;ebx、ecx、edx分别存放参数部分。</p>
+<p>​    汇编源码中，首先是第4行eax清零；之后第5行压栈；然后第6行，第7行字符串压栈，这样在栈中就构造了以”\x00”结尾的字符串”/bin//sh”。注意这里的“/bin//sh”与“/bin/sh”同样效果。此时的ESP指针指向了这个字符串首地址，第8行将该首地址赋给ebx，这样就有了int 0x80中断指令的第一个参数ebx；第9行中eax入栈，此时eax值还是0；第10行ebx入栈也就是把字符串”/bin//sh”地址入栈，两次压栈，此时栈中就有了字符串地址和一个0，刚好构成了一个指针数组；第11行将该指针数组的地址也就是esp赋给ecx，系统调用的第2个参数ecx中就保持了指针数组的地址；第12行edx清零，刚好是系统调用的第3个参数为零。第13行将系统调用号0xB赋给al,这样可以避免出现坏字符。最后调用软中断指令执行。</p>
+<h4 id="4、练习和示例"><a href="#4、练习和示例" class="headerlink" title="4、练习和示例"></a>4、练习和示例</h4><p>*FreeBSD 堆栈 ；Linux 寄存器</p>
+<p>1、编写如下c语言程序对应的shellcode：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  wirte(<span class="number">1</span>, <span class="string">"hello, world\n"</span>,<span class="number">15</span>);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    jmp/call方法，FreeBSD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line">_start:</span><br><span class="line">xor eax, eax</span><br><span class="line">jmp short string</span><br><span class="line">code:</span><br><span class="line">pop esi</span><br><span class="line">push byte 15</span><br><span class="line">push esi</span><br><span class="line">push byte 1</span><br><span class="line">mov al,4</span><br><span class="line">push eax</span><br><span class="line">int 0x80</span><br><span class="line">xor eax,eax</span><br><span class="line">push eax</span><br><span class="line">push eax</span><br><span class="line">mov al,1</span><br><span class="line">int 0x80</span><br><span class="line">string:</span><br><span class="line">call code</span><br><span class="line">db &quot;hello, world!&quot;, 0x0a</span><br></pre></td></tr></table></figure>
+<p>2、编写如下c语言程序对应的shellcode：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  execve(<span class="string">"/bin/sh"</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    push方法，FreeBSD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">BITS 32</span><br><span class="line">xor eax,eax</span><br><span class="line">push eax</span><br><span class="line">push 0x68732f6e</span><br><span class="line">push 0x69622f2f</span><br><span class="line">mov ebx,esp</span><br><span class="line">push eax</span><br><span class="line">push eax</span><br><span class="line">push ebx</span><br><span class="line">mov	al,59</span><br><span class="line">push eax</span><br><span class="line">int	80h</span><br></pre></td></tr></table></figure>
+<p>3、在Linux环境下分别用jmp/call方法和push方法各写一个汇编程序，完成如下c语言程序所要完成的功能，以便形成对应的shellcode。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">  execve(<span class="string">"/bin/ksh"</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    push方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BITS 32</span><br><span class="line">xor eax,eax</span><br><span class="line">xor edx,edx</span><br><span class="line">push eax</span><br><span class="line">push &quot;/ksh&quot;</span><br><span class="line">push &quot;/bin&quot;</span><br><span class="line">mov ebx,esp</span><br><span class="line">xor ecx,ecx</span><br><span class="line">mov al,0xb</span><br><span class="line">int 0x80</span><br></pre></td></tr></table></figure>
+<p>​    jmp/call方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">BITS 32</span><br><span class="line">xor eax,eax</span><br><span class="line">jmp short string</span><br><span class="line">code:</span><br><span class="line">pop ebx</span><br><span class="line">xor ecx,ecx</span><br><span class="line">xor edx,edx</span><br><span class="line">mov al,0xb</span><br><span class="line">int 0x80</span><br><span class="line">string:</span><br><span class="line">call code</span><br><span class="line">db &quot;/bin/ksh&quot; 0x0</span><br></pre></td></tr></table></figure>
+<p>4、汇编语言直接编写shellcode(jmp/call方法，FreeBSD环境下）执行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> *command=<span class="string">"/bin/sh"</span>;</span><br><span class="line">	<span class="keyword">char</span> *args[<span class="number">2</span>];</span><br><span class="line">	args[<span class="number">0</span>]=command;</span><br><span class="line">	args[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	execve(command,args,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//第一个参数是字符串"/bin/sh"的地址</span></span><br></pre></td></tr></table></figure>
+<p>​    jmp/call方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">global _start</span><br><span class="line">_start:</span><br><span class="line">xor eax, eax</span><br><span class="line">jmp short string</span><br><span class="line">code:</span><br><span class="line">pop esi</span><br><span class="line">push eax</span><br><span class="line">push esi</span><br><span class="line">push esi</span><br><span class="line">mov al,0xb</span><br><span class="line">push eax</span><br><span class="line">int 0x80</span><br><span class="line">xor eax,eax</span><br><span class="line">push eax</span><br><span class="line">push eax</span><br><span class="line">mov al,1</span><br><span class="line">int 0x80</span><br><span class="line">string:</span><br><span class="line">call code</span><br><span class="line">db &quot;/bin/sh&quot;, 0x0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/new-1/" rel="next" title="数组中&a与&a[0]的区别">
+                <i class="fa fa-chevron-left"></i> 数组中&a与&a[0]的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="PerryPPP" />
+          <p class="site-author-name" itemprop="name">PerryPPP</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何编写一个简单的shellcode"><span class="nav-number">1.</span> <span class="nav-text">如何编写一个简单的shellcode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、写在前面"><span class="nav-number">1.1.</span> <span class="nav-text">1、写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、系统调用函数execve"><span class="nav-number">1.2.</span> <span class="nav-text">2、系统调用函数execve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、用汇编语言来编写shellcode"><span class="nav-number">1.3.</span> <span class="nav-text">3、用汇编语言来编写shellcode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、练习和示例"><span class="nav-number">1.4.</span> <span class="nav-text">4、练习和示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PerryPPP</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
