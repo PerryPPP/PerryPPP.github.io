@@ -7,16 +7,11 @@
   </entry>
   <entry>
     <title><![CDATA[数组中&a与&a[0]的区别]]></title>
-    <url>%2F2018%2F04%2F08%2Fnew-1%2F</url>
+    <url>%2F2018%2F04%2F08%2F%E6%95%B0%E7%BB%84%E4%B8%AD%26a%E4%B8%8E%26a%5B0%5D(%E5%8D%B3a)%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[数组中&amp;a与&amp;a[0](即a)的区别​ 在newcoder上写数组相关题目时遇到了这样一个问题： 12345//以下 C 语言指令：int a[5] = &#123;1,3,5,7,9&#125;;int *p = (int *)(&amp;a+1);printf(“%d,%d”,*(a+1) ， *(p-1));//运行结果是什么？ ​ 读者可以先自己思考一下这个问题~ 在这道题中，*(a+1)的输出结果是非常常规容易思考的，而*(int*)(&amp;a+1)的输出结果则需要一定的思考。 ​ 下面公布正确答案：3,9。 ​ 题目中首先定义了一个可以存在 ​ 题目中首先定义了存放5个int类型空间大小的内存，然后初始化5个数。我们知道直接使用数组的名字a表示的是一个指向数组首地址的指针，所以直接a与&amp;a[0]是相同的意思，都表示数组的首地址。所以(a+1)很好理解，假设a地址是0x1000，就是取（0x1000+sizeof(int)）地址的数，由于数组的物理地址是连续的，当然就是取2。 那&amp;a表示什么意思呢，相当于取存放指向数组首地址的指针的存储地址，话有些绕，但是细细品味你就会发现，它就相当于二维指针，假设每个一维指针指向一排数组（当然除了第一个一维数组的指针之外实际都没有申请，但是在访问野指针之前计算机也不知道那块地址是否存在，但的确可以由物理地址连续性来获取这块地址的表示），**所以简言之&amp;a表示第一排数组，&amp;a+1就是表示第二排数组（就是5\sizeof(int)=54=20空间大小后一段空间的首地址）。** 有了上面的介绍就好理解了，(ptr-1)是表示取(0x1000+5sizeof(int)-sizeof(int))地址中的数，算得为5。 总结： *&amp;a[0]表示数组的首地址，与直接a相同意义。而&amp;a表示存储指向数组首地址的指针的地址，可以用二维指针来理解。 *(int*)(&amp;a+1)]]></content>
       <tags>
         <tag>日常</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[newcoder 清华 10进制 VS 2进制]]></title>
-    <url>%2F2018%2F04%2F01%2Fnew%2F</url>
-    <content type="text"><![CDATA[清华复试上机 10进制 VS 2进制 题解题目描述​ 对于一个十进制数A，将A转换为二进制数，然后按位逆序排列，再转换为十进制数B，我们乘B为A的二进制逆序数。 例如对于十进制数173，它的二进制形式为10101101，逆序排列得到10110101，其十进制数为181，181即为173的二进制逆序数。 输入描述:1一个1000位(即10^999)以内的十进制数。 输出描述:1输入的十进制数的二进制逆序数。 ​ 这是本人目前刷题到现在最讨厌的题型，大整数的各种操作。因为超过了long long 的表示范围，所以只能用字符串或者int数组来存储数据，然后逐位操作。 ​ 这里使用string类型来存储大整数滴~ ​ 需要实现的功能函数有：字符串的除法、加法和乘法。思路都非常简单一致，就是按照运算规则，从高位到低位(除法)、从低位到高位(加法、乘法)逐位来进行运算。 ​ 字符串的除法(因为是转换成二进制，所以是计算除以2的情况)： 123456789101112string div(string s) &#123; string ret = ""; int now = 0; for(int i = 0; i &lt; s.length(); i++) &#123;//从高位到低位 now = now * 10 + (s[i] - '0'); if(ret == "" &amp;&amp; now / 2 == 0) continue;//除去先导0 ret = ret + char('0' + now / 2); now %= 2; &#125; if(ret == "") ret = "0"; return ret;&#125; ​ 字符串的加法： 12345678910string add(string s) &#123; int c = 1, tmp; for(int i = s.length() - 1; i &gt;= 0; i--) &#123; tmp = (s[i] - &apos;0&apos;) + c; s[i] = char(tmp % 10 + &apos;0&apos;); c = tmp / 10;//c现在用来保存进位 if(c == 0) return s;//如果进位停止则说明之后的数字不会发生变化，直接返回 &#125; return &quot;1&quot; + s;//最多进一位1&#125; ​ 字符串的乘法(*2)： 12345678910string mul(string s) &#123; int c = 0, tmp; for(int i = s.length() - 1; i &gt;= 0; i--) &#123; tmp = (s[i] - &apos;0&apos;) * 2 + c; s[i] = char(tmp % 10 + &apos;0&apos;); c = tmp / 10; &#125; if(c) s = char(c + &apos;0&apos;) + s; return s;&#125; ​ 整体的代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include&lt;bits/stdc++.h&gt;using namespace std;string div(string s) &#123; string ret = ""; int now = 0; for(int i = 0; i &lt; s.length(); i++) &#123; now = now * 10 + (s[i] - '0'); if(ret == "" &amp;&amp; now / 2 == 0) continue; ret = ret + char('0' + now / 2); now %= 2; &#125; if(ret == "") ret = "0"; return ret;&#125;string add(string s) &#123; int c = 1, tmp; for(int i = s.length() - 1; i &gt;= 0; i--) &#123; tmp = (s[i] - '0') + c; s[i] = char(tmp % 10 + '0'); c = tmp / 10; if(c == 0) return s; &#125; return "1" + s;&#125;string mul(string s) &#123; int c = 0, tmp; for(int i = s.length() - 1; i &gt;= 0; i--) &#123; tmp = (s[i] - '0') * 2 + c; s[i] = char(tmp % 10 + '0'); c = tmp / 10; &#125; if(c) s = char(c + '0') + s; return s;&#125;int main() &#123; string num; while(cin &gt;&gt; num) &#123; int tmp; string ans = "0"; while(num != "0") &#123; tmp = num[num.length() - 1] - '0';//最后一位 ans = mul(ans); if(tmp &amp; 1) &#123; num[num.length() - 1]--; ans = add(ans); &#125; num = div(num); &#125; cout &lt;&lt; ans &lt;&lt; endl; &#125; return 0;&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[newcoder 清华 最小邮票数]]></title>
@@ -35,11 +30,6 @@
       <tags>
         <tag>日常</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[first test page]]></title>
-    <url>%2F2017%2F11%2F27%2Ffirst-test-page%2F</url>
-    <content type="text"><![CDATA[你好，欢迎来到我的技术博客]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
