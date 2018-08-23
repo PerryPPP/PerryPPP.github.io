@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="算法竞赛入门经典程序设计入门（顺序、分支、循环）printf 格式控制的总结：printf 格式控制的完整格式为： **%[-][0][m.n][l或h][格式字符] 具体的说明如下： ① %：表示格式说明的起始符号，不可缺少。 ② -：有-表示左对齐输出，如省略表示右对齐输出。  ③ 0：有0表示指定空位填0,如省略">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法竞赛学习笔记1">
+<meta property="og:url" content="https://perryppp.github.io/2018/08/23/算法竞赛学习笔记1/index.html">
+<meta property="og:site_name" content="Perry&#39;s blog">
+<meta property="og:description" content="算法竞赛入门经典程序设计入门（顺序、分支、循环）printf 格式控制的总结：printf 格式控制的完整格式为： **%[-][0][m.n][l或h][格式字符] 具体的说明如下： ① %：表示格式说明的起始符号，不可缺少。 ② -：有-表示左对齐输出，如省略表示右对齐输出。  ③ 0：有0表示指定空位填0,如省略表示指定空位不填。  ④ m.n：m指域宽，即对应的输出项在输出设备上所占的字符">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-23T12:42:23.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法竞赛学习笔记1">
+<meta name="twitter:description" content="算法竞赛入门经典程序设计入门（顺序、分支、循环）printf 格式控制的总结：printf 格式控制的完整格式为： **%[-][0][m.n][l或h][格式字符] 具体的说明如下： ① %：表示格式说明的起始符号，不可缺少。 ② -：有-表示左对齐输出，如省略表示右对齐输出。  ③ 0：有0表示指定空位填0,如省略表示指定空位不填。  ④ m.n：m指域宽，即对应的输出项在输出设备上所占的字符">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://perryppp.github.io/2018/08/23/算法竞赛学习笔记1/"/>
+
+
+
+
+
+  <title>算法竞赛学习笔记1 | Perry's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Perry's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/08/23/算法竞赛学习笔记1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PerryPPP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Perry's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法竞赛学习笔记1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T20:41:07+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="算法竞赛入门经典"><a href="#算法竞赛入门经典" class="headerlink" title="算法竞赛入门经典"></a>算法竞赛入门经典</h3><h4 id="程序设计入门（顺序、分支、循环）"><a href="#程序设计入门（顺序、分支、循环）" class="headerlink" title="程序设计入门（顺序、分支、循环）"></a>程序设计入门（顺序、分支、循环）</h4><h5 id="printf-格式控制的总结："><a href="#printf-格式控制的总结：" class="headerlink" title="printf 格式控制的总结："></a>printf 格式控制的总结：</h5><p>printf 格式控制的完整格式为： **%[-][0][m.n][l或h][格式字符]</p>
+<p>具体的说明如下：</p>
+<p><strong>①</strong> %：表示格式说明的起始符号，不可缺少。</p>
+<p><strong>②</strong> -：有-表示左对齐输出，如省略表示右对齐输出。 </p>
+<p><strong>③</strong> 0：有0表示指定空位填0,如省略表示指定空位不填。 </p>
+<p><strong>④</strong> m.n：m指域宽，即对应的输出项在输出设备上所占的字符数。N指精度。用于说明输出的实型数的小数位数。为指定n时，隐含的精度为n=6位。 </p>
+<p><strong>⑤</strong> l或h:l对整型指long型，对实型指double型。h用于将整型的格式字符修正为short型。 </p>
+<p><strong>⑥</strong> 格式字符：用以指定输出项的数据类型和输出格式。</p>
+<p>格式字符的总结如下：</p>
+<p><strong>①</strong> d格式：用来输出十进制整数。</p>
+<p>%d：按整型数据的实际长度输出。 </p>
+<p>%md：m为指定的输出字段的宽度。如果数据的位数小于m，则左端补以空格，若大于m，则按实际位数输出。 </p>
+<p>%ld：输出长整型数据。 </p>
+<p><strong>②</strong> o格式：以无符号八进制形式输出整数。对长整型可以用”%lo”格式输出。同样也可以指定字段宽度用“%mo”格式输出。</p>
+<p> 例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d，%o"</span>, a, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序的运行结果为：-1,177777 </p>
+<p>程序解析：-1在内存单元中（以补码形式存放）为二进制下的 1111111111111111，转换为八进制数为177777。 </p>
+<p>③ x格式：以无符号十六进制形式输出整数。对长整型可以用”%lx”格式输出。同样也可以指定字段宽度用”%mx”格式输出。 ④u格式：以无符号十进制形式输出整数。对长整型可以用”%lu”格式输出。同样也可以指定字段宽度用“%mu”格式输出。 </p>
+<p>⑤ c格式：输出一个字符。</p>
+<p>⑥s格式：用来输出一个串。</p>
+<p>有如下几种用法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%s"</span>, <span class="string">"CHINA"</span>);<span class="comment">//输出"CHINA"字符串（不包括双引号）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%10s"</span>, <span class="string">"CHINA"</span>);<span class="comment">//%ms：输出的字符串占m列，如字符串本身长度大于m，则突破获m的限制,将字符串全部 					  //输出。若串长小于m，则左补空格</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%-10s"</span>, <span class="string">"CHINA"</span>);<span class="comment">//%-ms：如果串长小于m，则在m列范围内，字符串向左靠，右补空格。 %m.ns：输出占						 //m列，但只取字符串中左端n个字符。这n个字符输出在m列的右侧，左补空格。</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%-10.3s"</span>, <span class="string">"CHINA"</span>); <span class="comment">//%-m.ns：其中m、n含义同上，n个字符输出在m列范围的左侧，右补空格。如果  							  //n&gt;m，则自动取n值，即保证n个字符正常输出。</span></span><br></pre></td></tr></table></figure>
+<p>⑦f格式：用来输出实数（包括单、双精度），以小数形式输出。</p>
+<p>%f：不指定宽度，整数部分全部输出并输出6位小数。 </p>
+<p>%m.nf：输出共占m列，其中有n位小数，如数值宽度小于m左端补空格。</p>
+<p> %-m.nf：输出共占n列，其中有n位小数，如数值宽度小于m右端补空格。 </p>
+<p>⑧e格式：以指数形式输出实数。</p>
+<p>%e：数字部分（又称尾数）输出6位小数，指数部分占5位或4位。 </p>
+<p>%m.ne和%-m.ne：m、n和”-”字符含义与前相同。此处n指数据的数字部分的小数位数，m表示整个输出数据所占的宽度。 </p>
+<p>⑨g格式：自动选f格式或e格式中较短的一种输出，且不输出无意义的零。 </p>
+<p><strong>Tips：C语言中的逻辑运算符都是短路运算符。一旦能够确定整个表达式的值，就不再进行运算。</strong></p>
+<p><strong>Tips：在C99中，double的输出必须用%f，而输入需要用%lf</strong></p>
+<p><strong>第一章末的实验：</strong></p>
+<p><strong>数据类型实验</strong></p>
+<p><strong>实验A1</strong>：表达式11111*11111的值是多少？把5个1改成6个1，9个1呢？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>实验A2</strong>：把实验A1中的所有数换成浮点数，结果如何？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>实验A3</strong>：表达式sqrt(-10)的值是多少？尝试用各种方式输出。在计算过程中系统会报错吗？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="built_in">sqrt</span>(<span class="number">-10</span>)); <span class="comment">//0 </span></span><br><span class="line"><span class="comment">//warning: format '%d' expects argument of type 'int', but argument 2 has type </span></span><br><span class="line"><span class="comment">//'__gnu_cxx::__enable_if&lt;true, double&gt;::__type &#123;aka double&#125;' [-Wformat=]</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%f\n"</span>, <span class="built_in">sqrt</span>(<span class="number">-10</span>)); <span class="comment">//nan     no warnings at all</span></span><br><span class="line"><span class="comment">//nan 用于处理计算中出现的错误情况，比如 0.0 除以 0.0 或者求负数的平方根。</span></span><br></pre></td></tr></table></figure>
+<p><strong>实验A4</strong>：表达式1.0/0.0、0.0/0.0的值是多少？尝试用各种方式输出。在计算过程中系统会报错吗？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="number">1.0</span>/<span class="number">0.0</span>); <span class="comment">//0  warning: format '%d' expects argument of type 'int', but argument 2 has type 'double' [-Wformat=]</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="number">0.0</span>/<span class="number">0.0</span>); <span class="comment">//0 format '%d' expects argument of type 'int', but argument 2 has type 'double' [-Wformat=]</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (<span class="keyword">int</span>)(<span class="number">1.0</span>/<span class="number">0.0</span>)); <span class="comment">//-2147483648</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (<span class="keyword">int</span>)(<span class="number">0.0</span>/<span class="number">0.0</span>)); <span class="comment">//-2147483648</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%f\n"</span>, <span class="number">1.0</span>/<span class="number">0.0</span>); <span class="comment">//inf</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%f\n"</span>, <span class="number">0.0</span>/<span class="number">0.0</span>); <span class="comment">//nan</span></span><br></pre></td></tr></table></figure>
+<p><strong>Tips:</strong> </p>
+<p><strong>inf</strong>:infinty(linux),等同于#INF:infinity(windows)    </p>
+<p><strong>nan</strong>: not a number, 等同于#IND:indeterminate(windows)</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>inf一般是因为得到的数值，超出浮点数的表示范围（溢出，即阶码部分超过其能表示的最大值）；而nan一般是因为对浮点数进行了未定义的操作，如对-1开方。</li>
+<li>nan==nan 结果是0或false，即不能和nan进行比较，和nan进行比较得到的结果总是false或0。所以可以用函数： int isNumber(double d){return (d==d);}来判断d是否为nan，若d是nan则返回0，否则返回非零值。</li>
+<li>1.0/0.0等于inf，-1.0/0.0等于-inf，0.0+inf=inf；</li>
+<li>对负数开方sqrt(-1.0)、对负数求对数(log(-1.0))、0.0/0.0、0.0*inf、inf/inf、inf-inf这些操作都会得到nan。(0/0会产生操作异常；0.0/0.0不会产生操作异常，而是会得到nan)</li>
+<li>得到inf时就查看是否有溢出或者除以0，得到nan时就查看是否有非法操作。</li>
+</ul>
+<p><strong>实验A5</strong>：表达式1/0的值是多少？在计算过程中会报错吗？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="number">1</span>/<span class="number">0</span>); <span class="comment">//warning: division by zero [-Wdiv-by-zero]</span></span><br></pre></td></tr></table></figure>
+<h5 id="输入格式实验"><a href="#输入格式实验" class="headerlink" title="输入格式实验"></a>输入格式实验</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, a, b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>实验B1</strong>：在同一行输入12和2，并以空格分隔，是否得到了预期的结果？<strong>Yes！</strong></p>
+<p><strong>实验B2</strong>：在不同的两行中输入12和2，是否得到了预期的结果？<strong>Yes！</strong></p>
+<p><strong>实验B3</strong>：在实验B1和B2中，在12和2的前面和后面加入大量的空格或水平制表符，甚至插入一些空行。<strong>Yes！</strong></p>
+<p><strong>实验B4</strong>：把2换成字符s，重复前三个实验。<strong>1：</strong>12 2752512 <strong>2：</strong>12 3305472  <strong>3：</strong>12 2592768 12 4112384 [totally different!]</p>
+<h5 id="第一章末的习题："><a href="#第一章末的习题：" class="headerlink" title="第一章末的习题："></a>第一章末的习题：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//习题1-1 平均数（average）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.3f\n"</span>, (a+b+c)/<span class="number">3.0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-2 温度（temperature）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;f);</span><br><span class="line">    <span class="keyword">double</span> c = <span class="number">5</span> * (f<span class="number">-32</span>) / <span class="number">9</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.3f\n"</span>, c);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-3 连续和（sum）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n*(n+<span class="number">1</span>)/<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-4 正弦和余弦（sin 和 cos）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%f %f\n"</span>, <span class="built_in">sin</span>(n), <span class="built_in">cos</span>(n));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-5 打折（discount）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">int</span> money = n * <span class="number">95</span>;</span><br><span class="line">    <span class="keyword">if</span>(money &gt;= <span class="number">300</span>) money = money*<span class="number">0.85</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.2f"</span>, money);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-6 三角形（triangle）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a[<span class="number">0</span>], &amp;a[<span class="number">1</span>], &amp;a[<span class="number">2</span>]);</span><br><span class="line">    sort(a, a+<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] + a[<span class="number">1</span>] &lt;= a[<span class="number">2</span>]) <span class="built_in">printf</span>(<span class="string">"not a triangle\n"</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[<span class="number">0</span>] * a[<span class="number">0</span>] + a[<span class="number">1</span>] * a[<span class="number">1</span>] == a[<span class="number">2</span>] * a[<span class="number">2</span>])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"yes\n"</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"no\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题1-7 年份（year）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;year);</span><br><span class="line">    <span class="keyword">if</span>(year%<span class="number">400</span> == <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">"yes\n"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(year%<span class="number">4</span> == <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">"yes\n"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"no\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="第一章末的问题"><a href="#第一章末的问题" class="headerlink" title="第一章末的问题"></a>第一章末的问题</h5><h5 id="问题1：int型整数的最大值和最小值是多少？"><a href="#问题1：int型整数的最大值和最小值是多少？" class="headerlink" title="问题1：int型整数的最大值和最小值是多少？"></a>问题1：int型整数的最大值和最小值是多少？</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(i &gt; <span class="number">0</span>) i++;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Min = %d Max = %d\n"</span>, i, i<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; <span class="comment">//组成原理 数据在电脑中的存储细节</span></span><br></pre></td></tr></table></figure>
+<h5 id="问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？"><a href="#问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？" class="headerlink" title="问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？"></a>问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？</h5><h5 id="问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）"><a href="#问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）" class="headerlink" title="问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）"></a>问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）</h5><h5 id="问题4：逻辑运算符”-amp-amp-“-”-“-”！“-的相对优先级是怎样的？-（test-a-amp-amp-b-c"><a href="#问题4：逻辑运算符”-amp-amp-“-”-“-”！“-的相对优先级是怎样的？-（test-a-amp-amp-b-c" class="headerlink" title="问题4：逻辑运算符”&amp;&amp;“ ”||“ ”！“ 的相对优先级是怎样的？ （test a&amp;&amp;b||c)"></a>问题4：逻辑运算符”&amp;&amp;“ ”||“ ”！“ 的相对优先级是怎样的？ （test a&amp;&amp;b||c)</h5><h5 id="问题5：if-a-if-b-x-else-y-的确切含义是什么？"><a href="#问题5：if-a-if-b-x-else-y-的确切含义是什么？" class="headerlink" title="问题5：if(a) if(b) x++; else y++;的确切含义是什么？"></a>问题5：if(a) if(b) x++; else y++;的确切含义是什么？</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a)</span><br><span class="line">    <span class="keyword">if</span>(b) x++;</span><br><span class="line"><span class="keyword">else</span> y++;</span><br></pre></td></tr></table></figure>
+<p><strong>Tips</strong>：整数范围、浮点数范围和精度、特殊的浮点数、scanf、空格、TAB和回车符的过滤、三角函数使用弧度而非角度；</p>
+<h5 id="7744问题：输出形如aabb的4位完全平方数。"><a href="#7744问题：输出形如aabb的4位完全平方数。" class="headerlink" title="7744问题：输出形如aabb的4位完全平方数。"></a>7744问题：输出形如aabb的4位完全平方数。</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a = <span class="number">1</span>; a &lt;= <span class="number">9</span>; a++) </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> b = <span class="number">1</span>; b &lt;= <span class="number">9</span>; b++)&#123;</span><br><span class="line">            <span class="keyword">int</span> n = a * <span class="number">1100</span> + b * <span class="number">11</span>;</span><br><span class="line">            <span class="keyword">int</span> m = <span class="built_in">floor</span>(<span class="built_in">sqrt</span>(n) + <span class="number">0.5</span>);<span class="comment">//考虑到浮点数计算的误差！！！</span></span><br><span class="line">            <span class="keyword">if</span>(m*m == n) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Tips</strong>:要计算只包含加法、减法和乘法的整数表达式除以正整数n的余数，可以在每步计算之后对n取余，结果不变;循环结构程序设计中最常见的两个问题：算术运算溢出和程序效率低下。</p>
+<p><strong>利用时间函数记录程序的运行速度</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Time used = %.2f\n"</span>, (<span class="keyword">double</span>)clock() /CLOCKS_PER_SEC);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="通过使用输入输出重定向，让程序从文件中读取数据"><a href="#通过使用输入输出重定向，让程序从文件中读取数据" class="headerlink" title="通过使用输入输出重定向，让程序从文件中读取数据"></a>通过使用输入输出重定向，让程序从文件中读取数据</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"input.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"output.txt"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line"><span class="comment">//在main函数的入口处加入上述代码，使得scanf从文件input.txt读入，printf写入文件output.txt</span></span><br></pre></td></tr></table></figure>
+<h5 id="常规的文件读写操作"><a href="#常规的文件读写操作" class="headerlink" title="常规的文件读写操作"></a>常规的文件读写操作</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FILE *fin, *fout;</span><br><span class="line">fin = fopen(<span class="string">"data.in"</span>, <span class="string">"rb"</span>);</span><br><span class="line">fout = fopen(<span class="string">"data.out"</span>, <span class="string">"wb"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">fscanf</span>(fin, <span class="string">"%d"</span>, &amp;x);</span><br><span class="line"><span class="built_in">fprintf</span>(fout, <span class="string">"%d"</span>, x);</span><br><span class="line"></span><br><span class="line">fclose(fin);</span><br><span class="line">fclose(fout);</span><br></pre></td></tr></table></figure>
+<p><strong>Tips</strong>:在多数据的题目中，要注意某些变量的初始化问题！</p>
+<p>​    在嵌套的两个代码块中有同名变量时，内层的变量会屏蔽外层变量，有时会引起十分隐蔽的错误！</p>
+<h5 id="第二章末的习题"><a href="#第二章末的习题" class="headerlink" title="第二章末的习题"></a>第二章末的习题</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//习题2-1 水仙花数（daffodil）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">100</span>; i &lt;= <span class="number">999</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> a = i%<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> b = i/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> c = i/<span class="number">100</span>;</span><br><span class="line">        <span class="keyword">if</span>(a*a*a + b*b*b +c*c*c == i)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题2-2 韩信点兵（hanxin）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c) != EOF) &#123;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">10</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">            <span class="keyword">if</span>(i%<span class="number">3</span> == a &amp;&amp; i%<span class="number">5</span> == b &amp;&amp; i%<span class="number">7</span> == c) &#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>, ++cnt, i);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">printf</span>(<span class="string">"Case %d: No answer\n"</span>, ++cnt);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题2-3 倒三角形（triangle）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF) &#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) <span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">        	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>*n<span class="number">-1</span><span class="number">-2</span>*i; j++) <span class="built_in">printf</span>(<span class="string">"#"</span>);</span><br><span class="line">        	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题2-4 子序列的和（subsequence)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m) != EOF) &#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span> &amp;&amp; m == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">double</span> temp = <span class="number">1.0</span> / i;</span><br><span class="line">            temp *= temp;</span><br><span class="line">            cnt += temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %.5f"</span>, ++count, cnt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题2-5 分数化小数（decimal）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b, c, cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c) != EOF) &#123;</span><br><span class="line">    	<span class="keyword">if</span>(a == <span class="number">0</span> &amp;&amp; b == <span class="number">0</span> &amp;&amp; c == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> temp = a * <span class="number">1.0</span> / b;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Case %d: %.*lf\n"</span>, ++cnt, c, temp);<span class="comment">//printf("%*.*f\n", m, n, ch);</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//习题2-6 排列（permutation）</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span>(a[<span class="number">0</span>] = <span class="number">123</span>; a[<span class="number">0</span>] &lt;=<span class="number">329</span>; a[<span class="number">0</span>]++) &#123;</span><br><span class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>] * <span class="number">2</span>;</span><br><span class="line">        a[<span class="number">2</span>] = a[<span class="number">0</span>] * <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> c[<span class="number">9</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; <span class="number">9</span>; m += <span class="number">3</span>) &#123;</span><br><span class="line">        	c[m+<span class="number">2</span>] = a[m/<span class="number">3</span>]%<span class="number">10</span>;</span><br><span class="line">        	c[m+<span class="number">1</span>] = a[m/<span class="number">3</span>]/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">        	c[m] = a[m/<span class="number">3</span>]/<span class="number">100</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> add = <span class="number">0</span>, mul = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">        	add += c[i];</span><br><span class="line">        	mul *= c[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(add == <span class="number">45</span> &amp;&amp; mul == <span class="number">362880</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>, a[<span class="number">0</span>], a[<span class="number">1</span>], a[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="第二章末的问题"><a href="#第二章末的问题" class="headerlink" title="第二章末的问题"></a>第二章末的问题</h5><p><strong>题目1</strong>：假设需要输出2，4，6，8，…,2n，每个一行，能不能通过对程序2-1进行小小的改动来实现？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//程序2-1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>任务1</strong>：改动第7行，不改动第6行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (i+<span class="number">1</span>)*<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>任务2</strong>：改动第6行，不改动第7行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">2</span>*n; i += <span class="number">2</span>)</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, i);</span><br></pre></td></tr></table></figure>
+<p><strong>题目2</strong>：下面程序的运行结果是什么？ <strong>无法停止，因为i存在误差，无法判定与10相等。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i != <span class="number">10</span>; i += <span class="number">0.1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%.lf\n"</span>, i);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/如何编写一个简单的shellcode/" rel="next" title="如何编写一个简单的shellcode">
+                <i class="fa fa-chevron-left"></i> 如何编写一个简单的shellcode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="PerryPPP" />
+          <p class="site-author-name" itemprop="name">PerryPPP</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法竞赛入门经典"><span class="nav-number">1.</span> <span class="nav-text">算法竞赛入门经典</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序设计入门（顺序、分支、循环）"><span class="nav-number">1.1.</span> <span class="nav-text">程序设计入门（顺序、分支、循环）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#printf-格式控制的总结："><span class="nav-number">1.1.1.</span> <span class="nav-text">printf 格式控制的总结：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入格式实验"><span class="nav-number">1.1.2.</span> <span class="nav-text">输入格式实验</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章末的习题："><span class="nav-number">1.1.3.</span> <span class="nav-text">第一章末的习题：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第一章末的问题"><span class="nav-number">1.1.4.</span> <span class="nav-text">第一章末的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题1：int型整数的最大值和最小值是多少？"><span class="nav-number">1.1.5.</span> <span class="nav-text">问题1：int型整数的最大值和最小值是多少？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？"><span class="nav-number">1.1.6.</span> <span class="nav-text">问题2：double型浮点数能精确到多少位小数？或者说，这个问题本身值得商榷？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）"><span class="nav-number">1.1.7.</span> <span class="nav-text">问题3：double型浮点数最大正数值和最小正数值是多少？（不必特别精确）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题4：逻辑运算符”-amp-amp-“-”-“-”！“-的相对优先级是怎样的？-（test-a-amp-amp-b-c"><span class="nav-number">1.1.8.</span> <span class="nav-text">问题4：逻辑运算符”&&“ ”||“ ”！“ 的相对优先级是怎样的？ （test a&&b||c)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#问题5：if-a-if-b-x-else-y-的确切含义是什么？"><span class="nav-number">1.1.9.</span> <span class="nav-text">问题5：if(a) if(b) x++; else y++;的确切含义是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7744问题：输出形如aabb的4位完全平方数。"><span class="nav-number">1.1.10.</span> <span class="nav-text">7744问题：输出形如aabb的4位完全平方数。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过使用输入输出重定向，让程序从文件中读取数据"><span class="nav-number">1.1.11.</span> <span class="nav-text">通过使用输入输出重定向，让程序从文件中读取数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常规的文件读写操作"><span class="nav-number">1.1.12.</span> <span class="nav-text">常规的文件读写操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章末的习题"><span class="nav-number">1.1.13.</span> <span class="nav-text">第二章末的习题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二章末的问题"><span class="nav-number">1.1.14.</span> <span class="nav-text">第二章末的问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PerryPPP</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
