@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-fill-left.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -78,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="题解," />
+  <meta name="keywords" content="日常," />
 
 
 
@@ -94,18 +101,18 @@
 
 
 
-<meta name="description" content="算法竞赛入门经典习题2-5分数化小数(decimal)题目描述： ​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &amp;lt;= 10 ^ 6$, $c &amp;lt;= 100。 输入包含多组数据，结束标记为a = b = c = 0。 ​    因为这道题发现了prin">
-<meta name="keywords" content="题解">
+<meta name="description" content="算法竞赛入门经典学习笔记02">
+<meta name="keywords" content="日常">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法竞赛入门经典习题2-5题解">
-<meta property="og:url" content="https://perryppp.github.io/2018/03/31/算法竞赛入门经典习题题解 /index.html">
+<meta property="og:title" content="算法竞赛学习笔记2">
+<meta property="og:url" content="https://perryppp.github.io/2018/08/25/算法竞赛学习笔记2/index.html">
 <meta property="og:site_name" content="Perry&#39;s blog">
-<meta property="og:description" content="算法竞赛入门经典习题2-5分数化小数(decimal)题目描述： ​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &amp;lt;= 10 ^ 6$, $c &amp;lt;= 100。 输入包含多组数据，结束标记为a = b = c = 0。 ​    因为这道题发现了printf的一种神奇的用法0.0。 1printf(&quot;%*.*lf\n&quot;, a, b, (double">
+<meta property="og:description" content="算法竞赛入门经典学习笔记02">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T13:20:31.999Z">
+<meta property="og:updated_time" content="2018-08-25T04:18:59.834Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法竞赛入门经典习题2-5题解">
-<meta name="twitter:description" content="算法竞赛入门经典习题2-5分数化小数(decimal)题目描述： ​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &amp;lt;= 10 ^ 6$, $c &amp;lt;= 100。 输入包含多组数据，结束标记为a = b = c = 0。 ​    因为这道题发现了printf的一种神奇的用法0.0。 1printf(&quot;%*.*lf\n&quot;, a, b, (double">
+<meta name="twitter:title" content="算法竞赛学习笔记2">
+<meta name="twitter:description" content="算法竞赛入门经典学习笔记02">
 
 
 
@@ -134,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://perryppp.github.io/2018/03/31/算法竞赛入门经典习题题解 /"/>
+  <link rel="canonical" href="https://perryppp.github.io/2018/08/25/算法竞赛学习笔记2/"/>
 
 
 
 
 
-  <title>算法竞赛入门经典习题2-5题解 | Perry's blog</title>
+  <title>算法竞赛学习笔记2 | Perry's blog</title>
   
 
 
@@ -167,6 +174,7 @@
 
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
+    <a href="https://github.com/PerryPPP" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -206,7 +214,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -216,7 +224,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Kategorien
+            Categories
           </a>
         </li>
       
@@ -226,7 +234,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -236,7 +244,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -283,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/03/31/算法竞赛入门经典习题题解 /">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2018/08/25/算法竞赛学习笔记2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="PerryPPP">
@@ -300,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法竞赛入门经典习题2-5题解</h1>
+          <h1 class="post-title" itemprop="name headline">算法竞赛学习笔记2</h1>
         
 
         <div class="post-meta">
@@ -310,10 +318,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-31T20:59:07+08:00">
-                2018-03-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T12:15:50+08:00">
+                2018-08-25
               </time>
             
 
@@ -350,14 +358,7 @@
       
 
       
-        <h2 id="算法竞赛入门经典习题2-5"><a href="#算法竞赛入门经典习题2-5" class="headerlink" title="算法竞赛入门经典习题2-5"></a>算法竞赛入门经典习题2-5</h2><h3 id="分数化小数-decimal"><a href="#分数化小数-decimal" class="headerlink" title="分数化小数(decimal)"></a>分数化小数(decimal)</h3><p>题目描述：</p>
-<p>​    输入正整数a, b, c, 输出a/b的小数形式，精确到小数点后c位。a,b &lt;= 10 ^ 6$, $c &lt;= 100。</p>
-<p>输入包含多组数据，结束标记为a = b = c = 0。</p>
-<p>​    因为这道题发现了printf的一种神奇的用法0.0。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%*.*lf\n"</span>, a, b, (<span class="keyword">double</span>) c / d);</span><br></pre></td></tr></table></figure>
-<p>​    其中，格式控制符%a.bf 表达的含义是：打印a位有效数字的b位小数。 %f是打印实数数据（float double类型的数据） a表示有效数字个数，b表示小数点后的位数。在本题中，只限制了小数点后的位数是c位，因此代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a, b, c;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">    <span class="keyword">if</span>(a == <span class="number">0</span> &amp;&amp; b == <span class="number">0</span> &amp;&amp; c == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  	<span class="keyword">double</span> ans = (<span class="keyword">double</span>)a / b;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.*f\n"</span>, c, ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="算法竞赛入门经典学习笔记02"><a href="#算法竞赛入门经典学习笔记02" class="headerlink" title="算法竞赛入门经典学习笔记02"></a>算法竞赛入门经典学习笔记02</h3>
       
     </div>
     
@@ -374,7 +375,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/题解/" rel="tag"># 题解</a>
+            <a href="/tags/日常/" rel="tag"># 日常</a>
           
         </div>
       
@@ -387,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/10/远程连接服务器的操作说明/" rel="next" title="远程连接服务器的操作说明">
-                <i class="fa fa-chevron-left"></i> 远程连接服务器的操作说明
+              <a href="/2018/08/23/Priceton-Alg/" rel="next" title="Priceton Alg Part I学习笔记01">
+                <i class="fa fa-chevron-left"></i> Priceton Alg Part I学习笔记01
               </a>
             
           </div>
@@ -397,8 +398,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/01/最小邮票数/" rel="prev" title="newcoder 清华 最小邮票数">
-                newcoder 清华 最小邮票数 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/02/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -476,10 +477,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -499,8 +500,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -511,7 +512,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -522,7 +523,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -541,6 +542,17 @@
                   
                     
                       GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:yifan.pan@pku.edu.cn" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
                     
                 </a>
               </span>
@@ -569,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法竞赛入门经典习题2-5"><span class="nav-number">1.</span> <span class="nav-text">算法竞赛入门经典习题2-5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分数化小数-decimal"><span class="nav-number">1.1.</span> <span class="nav-text">分数化小数(decimal)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法竞赛入门经典学习笔记02"><span class="nav-number">1.</span> <span class="nav-text">算法竞赛入门经典学习笔记02</span></a></li></ol></div>
             
 
           </div>
@@ -592,7 +604,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -601,7 +613,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
