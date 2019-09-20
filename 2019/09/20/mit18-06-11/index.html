@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="教程," />
+  <meta name="keywords" content="数学," />
 
 
 
@@ -101,24 +101,18 @@
 
 
 
-<meta name="description" content="远程连接服务器的操作说明​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。 一、有关服务器">
-<meta name="keywords" content="教程">
+<meta name="description" content="线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06） 参考教材：Introduction to Linear Algebra（Third Edition） 课程网址：https://ocw.mit.edu/co">
+<meta name="keywords" content="数学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="远程连接服务器的操作说明">
-<meta property="og:url" content="https://perryppp.github.io/2017/12/10/远程连接服务器的操作说明/index.html">
+<meta property="og:title" content="mit18.06-11">
+<meta property="og:url" content="https://perryppp.github.io/2019/09/20/mit18-06-11/index.html">
 <meta property="og:site_name" content="Perry&#39;s blog">
-<meta property="og:description" content="远程连接服务器的操作说明​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。 一、有关服务器的简单操作1、 远程连接服务器​    需要的知识储备：linux操作系统下常用">
+<meta property="og:description" content="线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06） 参考教材：Introduction to Linear Algebra（Third Edition） 课程网址：https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://perryppp.github.io/img/1.png">
-<meta property="og:image" content="https://perryppp.github.io/img/2.png">
-<meta property="og:image" content="https://perryppp.github.io/img/3.png">
-<meta property="og:image" content="https://perryppp.github.io/img/4.png">
-<meta property="og:image" content="https://perryppp.github.io/img/5.png">
-<meta property="og:updated_time" content="2018-08-23T13:20:11.318Z">
+<meta property="og:updated_time" content="2019-09-20T05:39:31.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="远程连接服务器的操作说明">
-<meta name="twitter:description" content="远程连接服务器的操作说明​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。 一、有关服务器的简单操作1、 远程连接服务器​    需要的知识储备：linux操作系统下常用">
-<meta name="twitter:image" content="https://perryppp.github.io/img/1.png">
+<meta name="twitter:title" content="mit18.06-11">
+<meta name="twitter:description" content="线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06） 参考教材：Introduction to Linear Algebra（Third Edition） 课程网址：https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-s">
 
 
 
@@ -147,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://perryppp.github.io/2017/12/10/远程连接服务器的操作说明/"/>
+  <link rel="canonical" href="https://perryppp.github.io/2019/09/20/mit18-06-11/"/>
 
 
 
 
 
-  <title>远程连接服务器的操作说明 | Perry's blog</title>
+  <title>mit18.06-11 | Perry's blog</title>
   
 
 
@@ -297,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2017/12/10/远程连接服务器的操作说明/">
+    <link itemprop="mainEntityOfPage" href="https://perryppp.github.io/2019/09/20/mit18-06-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="PerryPPP">
@@ -314,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">远程连接服务器的操作说明</h1>
+          <h1 class="post-title" itemprop="name headline">mit18.06-11</h1>
         
 
         <div class="post-meta">
@@ -326,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T20:40:17+08:00">
-                2017-12-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-20T13:25:02+08:00">
+                2019-09-20
               </time>
             
 
@@ -336,6 +330,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -364,26 +380,34 @@
       
 
       
-        <h2 id="远程连接服务器的操作说明"><a href="#远程连接服务器的操作说明" class="headerlink" title="远程连接服务器的操作说明"></a>远程连接服务器的操作说明</h2><p>​    在本科阶段的学习中，我们经常接触到服务器的概念。但很多同学都像我一样没有实际接触和操作过远程服务器。在真实的项目中，不知道如何操作自己远在千里之外的云端服务器。在本文中，笔者将以一个初学者的角度，详细地说明如何操作远程服务器、上传自己的资源、第一个网站的开发与发布过程。</p>
-<h3 id="一、有关服务器的简单操作"><a href="#一、有关服务器的简单操作" class="headerlink" title="一、有关服务器的简单操作"></a>一、有关服务器的简单操作</h3><h4 id="1、-远程连接服务器"><a href="#1、-远程连接服务器" class="headerlink" title="1、 远程连接服务器"></a>1、 远程连接服务器</h4><p>​    需要的知识储备：linux操作系统下常用的指令、linux文件系统的结构</p>
-<p>​    需要的软件：仅列举本人实际使用过的putty和Xshell。（下文以putty的界面为例）</p>
-<p>​    在界面中输入下列信息:</p>
-<p>主机名称：120.78.182.65 （这是本人测试开发用的服务器的外网ip，仅作示例。在这里填写自己要连接的远程服务器的ip地址即可）</p>
-<p>端口号：22</p>
-<p>退出时关闭系统：仅正常退出</p>
-<p>然后点击打开，即看到如下界面：</p>
-<p><img src="/img/1.png" alt="img1"></p>
-<p>​    在login as: 提示后输入自己想要登陆的用户名（若输入root后，则以root身份登入服务器。）在界面提示输入密码时，输入自己设置好的密码。</p>
-<p>​    敲击回车键，看到如下界面即为登入成功，可进行一系列操作。（此时的操作全部会同步到远程服务器端。）</p>
-<p><img src="/img/2.png" alt="img2"></p>
-<h3 id="2、-将本地的网站资源上传至服务器"><a href="#2、-将本地的网站资源上传至服务器" class="headerlink" title="2、 将本地的网站资源上传至服务器"></a>2、 将本地的网站资源上传至服务器</h3><p>​    下载一个文档上传用的软件，本文以FileZilla为例,完成安装后运行，看到如图所示界面。</p>
-<p><img src="/img/3.png" alt="img3"></p>
-<pre><code>点击菜单栏的“文件”选项，选择站点管理器，完成如下配置。
-</code></pre><p><img src="/img/4.png" alt="img4"></p>
-<p>​    主机名和端口号与上文叙述的一致，协议选择SFTP。在用户名和密码栏填写自己想要在远程服务器端登陆的用户名和对应的密码。考虑到项目资源管理的独立性，一般来说，不建议以root用户登陆。</p>
-<p>​    点击连接。看到如下界面即为连接成功。</p>
-<p><img src="/img/5.png" alt="img5"></p>
-<p>​    本地站点的文件目录即为本地机器的文件目录，右侧即为服务器的文件目录，可通过更改远程站点栏的路径名，查看服务器各个文件目录下的资源。Apache2的默认网站路径为/var/www/html，将资源上传至这个目录下即可在浏览器得到显示。</p>
+        <h2 id="线代学习笔记11-矩阵空间、秩1矩阵和小世界图（2019-9-20）"><a href="#线代学习笔记11-矩阵空间、秩1矩阵和小世界图（2019-9-20）" class="headerlink" title="线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）"></a>线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）</h2><p>参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06）</p>
+<p>参考教材：Introduction to Linear Algebra（Third Edition）</p>
+<p>课程网址：<a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/index.htm" target="_blank" rel="noopener">https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/index.htm</a></p>
+<p><strong>Main Content：</strong></p>
+<ul>
+<li>Bases of new vector space(矩阵空间)</li>
+<li>Rank one matrices</li>
+<li>Small world graphs</li>
+</ul>
+<h4 id="11-1-一些特别的向量空间"><a href="#11-1-一些特别的向量空间" class="headerlink" title="11.1 一些特别的向量空间"></a>11.1 一些特别的向量空间</h4><h5 id="11-1-1-矩阵空间"><a href="#11-1-1-矩阵空间" class="headerlink" title="11.1.1 矩阵空间"></a>11.1.1 矩阵空间</h5><p>​        接着上一节课提到的扩展的“向量空间”（以矩阵为空间元素的“向量空间”）。</p>
+<p>​        考虑这样一个集合$M$,它包含了所有的$3*3$矩阵（$M = all \ 3 \ by \ 3 \ matrices$）,很容易观察到，在这个集合中，矩阵的加法和数乘运算都是封闭的，所以我们可以将$M$视作一个特殊的“向量空间”。</p>
+<p>​        $M$有两个基本的子空间，$3<em>3$的对称矩阵$S$（</em>symmetric 3 by 3<em>），上三角矩阵$U$(</em>upper triangular 3 by 3*)。</p>
+<p>​        先来考虑$M$的基，我们很容易得到如下的一组基($dim(M) = 9$)：<br>$$<br>\left[<br>    \begin{matrix}<br>        1\quad 0\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>、<br>\left[<br>    \begin{matrix}<br>        0\quad 1\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>、<br>\left[<br>    \begin{matrix}<br>        0\quad 0\quad 1\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>…<br>\left[<br>    \begin{matrix}<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 1<br>    \end{matrix}</p>
+<p>\right]<br>$$<br>​        $dim(S) = 6, dim(U) = 6$(对于对称矩阵$S$,确定6个元素之后，其余的三个元素也随之确定；矩阵$U$中则只需要考虑6个元素。)</p>
+<p>​        $dim(S)+dim(U) = dim(S+U)+dim(S \bigcap U)$</p>
+<h5 id="11-1-2-线性微分方程的解空间"><a href="#11-1-2-线性微分方程的解空间" class="headerlink" title="11.1.2 线性微分方程的解空间"></a>11.1.2 线性微分方程的解空间</h5><p>​        考虑解微分方程：$\frac{d^2y}{dx^2} + y = 0$</p>
+<p>​        我们很容易看出，$y = cosx$和$y=sinx$是上述方程的解。（$e^{ix}$也是该方程的解,不过可以将其看作是$cosx、sinx$的线性组合（考虑复数），$e^{ix} = cosx + sinx,e^{-ix} = cosx-sinx$）。那么，该微分方程的通解都可以由特解$sinx、cosx$来表示，即$c_1cosx+c_2sinx$。</p>
+<p>​        这个问题很类似于零空间的求解，我们可以将上述问题的解看作线性空间中的元素，这些元素满足线性运算的封闭条件，所以我们可以将这些解的集合称为空间。从空间的角度来看这个问题时，$cosx、sinx$就是这个解空间的一组基，他们的线性组合构成了这个微分方程的解空间，其维度为2(二阶导)。</p>
+<h4 id="11-2-秩1矩阵"><a href="#11-2-秩1矩阵" class="headerlink" title="11.2 秩1矩阵"></a>11.2 秩1矩阵</h4><h5 id="11-2-1-秩1矩阵的介绍"><a href="#11-2-1-秩1矩阵的介绍" class="headerlink" title="11.2.1 秩1矩阵的介绍"></a>11.2.1 秩1矩阵的介绍</h5><p>​        Ex.$A=\left[\begin{matrix}1\quad4\quad5\2\quad8\quad10\end{matrix}\right]$，在这个矩阵里，行2是行1的2倍，很容易可以看出$rank(A) = 1$,同时根据$dim(C(A)) = rank = dim(C(A^T))$可以得到，其行空间和列空间的维度均为1。我们可以将$A$看作主列<em>主行得到的矩阵：<br>$$<br>A=\left[    \begin{matrix}    1 \quad 4 \quad 5\    2 \quad 8 \quad 10    \end{matrix}\right]=\left[    \begin{matrix}    1\    2     \end{matrix}\right]</em>\left[    \begin{matrix}    1 \quad 4 \quad 5    \end{matrix}\right]<br>$$<br>​        这就是秩1矩阵的优点，我们可以很容易地将其分解为一列乘以一行的形式，即$A = UV^T$。</p>
+<p>​        秩1矩阵就像是建造时用的砖块，我们可以用它来搭建其他的矩阵，例如：我们可以用4个秩1矩阵来构成一个秩为4的矩阵。</p>
+<p>​        下面，我们再考虑这样一个问题：</p>
+<p>​        $M$是所有$5*17$的矩阵的集合，它的一个满足秩为4条件的子集，是不是一个子空间呢？显然不是，因为两个秩为4的矩阵相加，很可能得到秩为5的矩阵，不满足对线性运算的封闭。这里补充一条性质：两个矩阵之和的秩不大于两个矩阵的秩之和，即$R(A+B) \leq R(A)+R(B)$。同理，秩为1的矩阵集合也不能构成一个子空间。</p>
+<h5 id="11-2-2-子空间的转化"><a href="#11-2-2-子空间的转化" class="headerlink" title="11.2.2 子空间的转化"></a>11.2.2 子空间的转化</h5><p>​        有如下问题：四维空间中的向量都有四个分量：$v = (v_1, v_2, v_3, v_4)$。设$S$为一个集合，其中的向量都满足$v_1+v_2+v_3+v_4 = 0$，那么$S$是不是一个子空间？如果是的话，它的维数是多少呢？</p>
+<p>​        显然，$S$是一个子空间，因为$v_1 + v_2 + v_3 + v_4 = 0$，对加法和数乘都是封闭的，且$S$中一定包含零向量。仔细观察$v_1+v_2+v_3+v_4=0$,我们发现，可以将这条式子看作$[1 \quad 1\quad 1\quad 1] *(v_1, v_2,v_3,v_4) = 0$,此时记$[1 \quad 1\quad 1\quad 1]$为$A$,则有：$Av=0$。那么$S$即为$A = [1\quad 1\quad 1\quad 1]$的零空间。那么，$dim(S)= dim(N(A))= n-r=4-1=3$</p>
+<p>​        根据$S$即为$A = [1\quad 1\quad 1\quad 1]$的零空间这个关系，我们很容易得到空间$S$的一组基：<br>$$<br>\left[    \begin{matrix}    -1\    1\    0\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\    0\    1\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\    0\    0\    1    \end{matrix}\right]<br>$$<br>​        $C(A) = R^1,N(A^T) = {0}$</p>
+<h4 id="11-3-小世界图"><a href="#11-3-小世界图" class="headerlink" title="11.3 小世界图"></a>11.3 小世界图</h4><p>​        $Graph = {nodes, edges}$</p>
+<p>​        六度分离猜想（<em>Six Degrees of Separation</em>）：“你和任何一个陌生人之间所间隔的人不会超过五个，也就是说，最多通过五个人你就能够认识任何一个陌生人。”根据这个理论，你和世界上的任何一个人之间只隔着五个人，不管对方在哪个国家，属哪类人种，是哪种肤色。</p>
+<p>​        具体图的内容在下一节中展开。</p>
 
       
     </div>
@@ -401,7 +425,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程/" rel="tag"># 教程</a>
+            <a href="/tags/数学/" rel="tag"># 数学</a>
           
         </div>
       
@@ -414,15 +438,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/03/生活小记——在PKUSZ读PhD的第一年01/" rel="next" title="生活小记——在PKUSZ读PhD的第一年01">
+                <i class="fa fa-chevron-left"></i> 生活小记——在PKUSZ读PhD的第一年01
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/31/算法竞赛入门经典习题题解 /" rel="prev" title="算法竞赛入门经典习题2-5题解">
-                算法竞赛入门经典习题2-5题解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -635,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#远程连接服务器的操作说明"><span class="nav-number">1.</span> <span class="nav-text">远程连接服务器的操作说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、有关服务器的简单操作"><span class="nav-number">1.1.</span> <span class="nav-text">一、有关服务器的简单操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、-远程连接服务器"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、 远程连接服务器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-将本地的网站资源上传至服务器"><span class="nav-number">1.2.</span> <span class="nav-text">2、 将本地的网站资源上传至服务器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线代学习笔记11-矩阵空间、秩1矩阵和小世界图（2019-9-20）"><span class="nav-number">1.</span> <span class="nav-text">线代学习笔记11 矩阵空间、秩1矩阵和小世界图（2019/9/20）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-一些特别的向量空间"><span class="nav-number">1.0.1.</span> <span class="nav-text">11.1 一些特别的向量空间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-1-矩阵空间"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">11.1.1 矩阵空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-1-2-线性微分方程的解空间"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">11.1.2 线性微分方程的解空间</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2-秩1矩阵"><span class="nav-number">1.0.2.</span> <span class="nav-text">11.2 秩1矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#11-2-1-秩1矩阵的介绍"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">11.2.1 秩1矩阵的介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-2-2-子空间的转化"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">11.2.2 子空间的转化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-小世界图"><span class="nav-number">1.0.3.</span> <span class="nav-text">11.3 小世界图</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
