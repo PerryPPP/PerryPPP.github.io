@@ -378,7 +378,7 @@
 <p><img src="/img/2.png" alt="img2"></p>
 <h3 id="2、-将本地的网站资源上传至服务器"><a href="#2、-将本地的网站资源上传至服务器" class="headerlink" title="2、 将本地的网站资源上传至服务器"></a>2、 将本地的网站资源上传至服务器</h3><p>​    下载一个文档上传用的软件，本文以FileZilla为例,完成安装后运行，看到如图所示界面。</p>
 <p><img src="/img/3.png" alt="img3"></p>
-<pre><code>点击菜单栏的“文件”选项，选择站点管理器，完成如下配置。
+<pre><code> 点击菜单栏的“文件”选项，选择站点管理器，完成如下配置。
 </code></pre><p><img src="/img/4.png" alt="img4"></p>
 <p>​    主机名和端口号与上文叙述的一致，协议选择SFTP。在用户名和密码栏填写自己想要在远程服务器端登陆的用户名和对应的密码。考虑到项目资源管理的独立性，一般来说，不建议以root用户登陆。</p>
 <p>​    点击连接。看到如下界面即为连接成功。</p>
@@ -813,6 +813,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

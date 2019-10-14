@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Perry&#39;s blog">
 <meta property="og:description" content="矩阵空间、秩1矩阵和小世界图（2019/9/20）参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06） 参考教材：Introduction to Linear Algebra（Third Edition） 课程网址：https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-201">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-20T05:41:23.336Z">
+<meta property="og:updated_time" content="2019-10-14T04:46:46.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mit18.06-11">
 <meta name="twitter:description" content="矩阵空间、秩1矩阵和小世界图（2019/9/20）参考课程：MIT线性代数 （Prof. Gilbert Strang ， MIT 18.06） 参考教材：Introduction to Linear Algebra（Third Edition） 课程网址：https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-201">
@@ -392,20 +392,56 @@
 <h4 id="11-1-一些特别的向量空间"><a href="#11-1-一些特别的向量空间" class="headerlink" title="11.1 一些特别的向量空间"></a>11.1 一些特别的向量空间</h4><h5 id="11-1-1-矩阵空间"><a href="#11-1-1-矩阵空间" class="headerlink" title="11.1.1 矩阵空间"></a>11.1.1 矩阵空间</h5><p>​        接着上一节课提到的扩展的“向量空间”（以矩阵为空间元素的“向量空间”）。</p>
 <p>​        考虑这样一个集合$M$,它包含了所有的$3*3$矩阵（$M = all \ 3 \ by \ 3 \ matrices$）,很容易观察到，在这个集合中，矩阵的加法和数乘运算都是封闭的，所以我们可以将$M$视作一个特殊的“向量空间”。</p>
 <p>​        $M$有两个基本的子空间，$3<em>3$的对称矩阵$S$（</em>symmetric 3 by 3<em>），上三角矩阵$U$(</em>upper triangular 3 by 3*)。</p>
-<p>​        先来考虑$M$的基，我们很容易得到如下的一组基($dim(M) = 9$)：<br>$$<br>\left[<br>    \begin{matrix}<br>        1\quad 0\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>、<br>\left[<br>    \begin{matrix}<br>        0\quad 1\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>、<br>\left[<br>    \begin{matrix}<br>        0\quad 0\quad 1\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0<br>    \end{matrix}<br>\right]<br>…<br>\left[<br>    \begin{matrix}<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 0\<br>        0\quad 0\quad 1<br>    \end{matrix}</p>
-<p>\right]<br>$$<br>​        $dim(S) = 6, dim(U) = 6$(对于对称矩阵$S$,确定6个元素之后，其余的三个元素也随之确定；矩阵$U$中则只需要考虑6个元素。)</p>
+<p>​        先来考虑$M$的基，我们很容易得到如下的一组基($dim(M) = 9$)：</p>
+<script type="math/tex; mode=display">
+\left[
+    \begin{matrix}
+        1\quad 0\quad 0\\
+        0\quad 0\quad 0\\
+        0\quad 0\quad 0
+    \end{matrix}
+\right]
+、
+\left[
+    \begin{matrix}
+        0\quad 1\quad 0\\
+        0\quad 0\quad 0\\
+        0\quad 0\quad 0
+    \end{matrix}
+\right]
+、
+\left[
+    \begin{matrix}
+        0\quad 0\quad 1\\
+        0\quad 0\quad 0\\
+        0\quad 0\quad 0
+    \end{matrix}
+\right]
+...
+\left[
+    \begin{matrix}
+        0\quad 0\quad 0\\
+        0\quad 0\quad 0\\
+        0\quad 0\quad 1
+    \end{matrix}
+
+\right]</script><p>​        $dim(S) = 6, dim(U) = 6$(对于对称矩阵$S$,确定6个元素之后，其余的三个元素也随之确定；矩阵$U$中则只需要考虑6个元素。)</p>
 <p>​        $dim(S)+dim(U) = dim(S+U)+dim(S \bigcap U)$</p>
 <h5 id="11-1-2-线性微分方程的解空间"><a href="#11-1-2-线性微分方程的解空间" class="headerlink" title="11.1.2 线性微分方程的解空间"></a>11.1.2 线性微分方程的解空间</h5><p>​        考虑解微分方程：$\frac{d^2y}{dx^2} + y = 0$</p>
 <p>​        我们很容易看出，$y = cosx$和$y=sinx$是上述方程的解。（$e^{ix}$也是该方程的解,不过可以将其看作是$cosx、sinx$的线性组合（考虑复数），$e^{ix} = cosx + sinx,e^{-ix} = cosx-sinx$）。那么，该微分方程的通解都可以由特解$sinx、cosx$来表示，即$c_1cosx+c_2sinx$。</p>
 <p>​        这个问题很类似于零空间的求解，我们可以将上述问题的解看作线性空间中的元素，这些元素满足线性运算的封闭条件，所以我们可以将这些解的集合称为空间。从空间的角度来看这个问题时，$cosx、sinx$就是这个解空间的一组基，他们的线性组合构成了这个微分方程的解空间，其维度为2(二阶导)。</p>
-<h4 id="11-2-秩1矩阵"><a href="#11-2-秩1矩阵" class="headerlink" title="11.2 秩1矩阵"></a>11.2 秩1矩阵</h4><h5 id="11-2-1-秩1矩阵的介绍"><a href="#11-2-1-秩1矩阵的介绍" class="headerlink" title="11.2.1 秩1矩阵的介绍"></a>11.2.1 秩1矩阵的介绍</h5><p>​        Ex.$A=\left[\begin{matrix}1\quad4\quad5\2\quad8\quad10\end{matrix}\right]$，在这个矩阵里，行2是行1的2倍，很容易可以看出$rank(A) = 1$,同时根据$dim(C(A)) = rank = dim(C(A^T))$可以得到，其行空间和列空间的维度均为1。我们可以将$A$看作主列<em>主行得到的矩阵：<br>$$<br>A=\left[    \begin{matrix}    1 \quad 4 \quad 5\    2 \quad 8 \quad 10    \end{matrix}\right]=\left[    \begin{matrix}    1\    2     \end{matrix}\right]</em>\left[    \begin{matrix}    1 \quad 4 \quad 5    \end{matrix}\right]<br>$$<br>​        这就是秩1矩阵的优点，我们可以很容易地将其分解为一列乘以一行的形式，即$A = UV^T$。</p>
+<h4 id="11-2-秩1矩阵"><a href="#11-2-秩1矩阵" class="headerlink" title="11.2 秩1矩阵"></a>11.2 秩1矩阵</h4><h5 id="11-2-1-秩1矩阵的介绍"><a href="#11-2-1-秩1矩阵的介绍" class="headerlink" title="11.2.1 秩1矩阵的介绍"></a>11.2.1 秩1矩阵的介绍</h5><p>​        Ex.$A=\left[\begin{matrix}1\quad4\quad5\\2\quad8\quad10\end{matrix}\right]$，在这个矩阵里，行2是行1的2倍，很容易可以看出$rank(A) = 1$,同时根据$dim(C(A)) = rank = dim(C(A^T))$可以得到，其行空间和列空间的维度均为1。我们可以将$A$看作主列*主行得到的矩阵：</p>
+<script type="math/tex; mode=display">
+A=\left[    \begin{matrix}    1 \quad 4 \quad 5\\    2 \quad 8 \quad 10    \end{matrix}\right]=\left[    \begin{matrix}    1\\    2     \end{matrix}\right]*\left[    \begin{matrix}    1 \quad 4 \quad 5    \end{matrix}\right]</script><p>​        这就是秩1矩阵的优点，我们可以很容易地将其分解为一列乘以一行的形式，即$A = UV^T$。</p>
 <p>​        秩1矩阵就像是建造时用的砖块，我们可以用它来搭建其他的矩阵，例如：我们可以用4个秩1矩阵来构成一个秩为4的矩阵。</p>
 <p>​        下面，我们再考虑这样一个问题：</p>
 <p>​        $M$是所有$5*17$的矩阵的集合，它的一个满足秩为4条件的子集，是不是一个子空间呢？显然不是，因为两个秩为4的矩阵相加，很可能得到秩为5的矩阵，不满足对线性运算的封闭。这里补充一条性质：两个矩阵之和的秩不大于两个矩阵的秩之和，即$R(A+B) \leq R(A)+R(B)$。同理，秩为1的矩阵集合也不能构成一个子空间。</p>
 <h5 id="11-2-2-子空间的转化"><a href="#11-2-2-子空间的转化" class="headerlink" title="11.2.2 子空间的转化"></a>11.2.2 子空间的转化</h5><p>​        有如下问题：四维空间中的向量都有四个分量：$v = (v_1, v_2, v_3, v_4)$。设$S$为一个集合，其中的向量都满足$v_1+v_2+v_3+v_4 = 0$，那么$S$是不是一个子空间？如果是的话，它的维数是多少呢？</p>
 <p>​        显然，$S$是一个子空间，因为$v_1 + v_2 + v_3 + v_4 = 0$，对加法和数乘都是封闭的，且$S$中一定包含零向量。仔细观察$v_1+v_2+v_3+v_4=0$,我们发现，可以将这条式子看作$[1 \quad 1\quad 1\quad 1] *(v_1, v_2,v_3,v_4) = 0$,此时记$[1 \quad 1\quad 1\quad 1]$为$A$,则有：$Av=0$。那么$S$即为$A = [1\quad 1\quad 1\quad 1]$的零空间。那么，$dim(S)= dim(N(A))= n-r=4-1=3$</p>
-<p>​        根据$S$即为$A = [1\quad 1\quad 1\quad 1]$的零空间这个关系，我们很容易得到空间$S$的一组基：<br>$$<br>\left[    \begin{matrix}    -1\    1\    0\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\    0\    1\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\    0\    0\    1    \end{matrix}\right]<br>$$<br>​        $C(A) = R^1,N(A^T) = {0}$</p>
-<h4 id="11-3-小世界图"><a href="#11-3-小世界图" class="headerlink" title="11.3 小世界图"></a>11.3 小世界图</h4><p>​        $Graph = {nodes, edges}$</p>
+<p>​        根据$S$即为$A = [1\quad 1\quad 1\quad 1]$的零空间这个关系，我们很容易得到空间$S$的一组基：</p>
+<script type="math/tex; mode=display">
+\left[    \begin{matrix}    -1\\    1\\    0\\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\\    0\\    1\\    0    \end{matrix}\right]\left[    \begin{matrix}    -1\\    0\\    0\\    1    \end{matrix}\right]</script><p>​        $C(A) = R^1,N(A^T) = \{0\}$</p>
+<h4 id="11-3-小世界图"><a href="#11-3-小世界图" class="headerlink" title="11.3 小世界图"></a>11.3 小世界图</h4><p>​        $Graph = \{nodes, edges\}$</p>
 <p>​        六度分离猜想（<em>Six Degrees of Separation</em>）：“你和任何一个陌生人之间所间隔的人不会超过五个，也就是说，最多通过五个人你就能够认识任何一个陌生人。”根据这个理论，你和世界上的任何一个人之间只隔着五个人，不管对方在哪个国家，属哪类人种，是哪种肤色。</p>
 <p>​        具体图的内容在下一节中展开。</p>
 
@@ -837,6 +873,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
